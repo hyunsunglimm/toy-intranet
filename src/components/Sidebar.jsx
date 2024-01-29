@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const sidebarHeight = `${window.innerHeight - 80}px`;
+
+  function signOutHandler() {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div
       style={{ height: sidebarHeight }}
@@ -12,7 +26,7 @@ export default function Sidebar() {
           <p>페이지</p>
           <ul className="p-4">
             <li>
-              <Link to="/mypage">page1</Link>
+              <Link to="/management">직원 관리</Link>
             </li>
             <li>
               <Link to="/mypage">page2</Link>
@@ -32,7 +46,7 @@ export default function Sidebar() {
               <Link to="/mypage">알림</Link>
             </li>
             <li>
-              <Link to="/mypage">로그아웃</Link>
+              <button onClick={signOutHandler}>로그아웃</button>
             </li>
           </ul>
         </div>
