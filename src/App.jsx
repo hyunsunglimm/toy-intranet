@@ -10,16 +10,26 @@ import { EmployeeContext } from "./context/EmployeeContext";
 import Management from "./pages/Management";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [employees, setEmployees] = useState([]);
+  const [loginUser, setLoginUser] = useState(null);
 
-  const auth = getAuth();
-  const user = auth.currentUser;
-  const loginUser = employees?.find(
-    (employee) => employee.email === user?.email
-  );
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+      if (user) {
+        const loginUser = employees.find(
+          (employee) => employee.email === user.email
+        );
+        setLoginUser(loginUser);
+      } else {
+        setLoginUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [employees]);
 
   useEffect(() => {
     client

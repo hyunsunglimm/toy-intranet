@@ -1,5 +1,9 @@
 import { useRef, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addEmployee } from "../sanity/employee";
 
@@ -38,6 +42,7 @@ export default function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         addEmployee(userData);
+        signOut(auth); // createUserWithEmailAndPassword함수가 동작하면 회원가입 후 자동으로 로그인함. 이를 막기위해 임시로 signOut함수사용
       })
       .catch((error) => {
         console.log(error);
