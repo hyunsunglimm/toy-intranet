@@ -24,7 +24,7 @@ export default function Login() {
 
   const contentHeight = `${window.innerHeight - 80}px`;
 
-  const inputStyle = "border-[1px] border-gray-200 w-full rounded-md p-1";
+  const inputStyle = "border-[1px] border-gray-200 w-full rounded-md py-1 px-2";
 
   return (
     <div
@@ -34,17 +34,25 @@ export default function Login() {
       <div className="w-[400px] rounded-lg p-4 bg-white flex flex-col gap-4">
         <p className="text-center font-bold">Welcome to Intranet Five !</p>
         <div>
-          <p>email</p>
+          <p className="mb-2 text-gray-400">email</p>
           <input className={inputStyle} ref={emailRef} type="email" />
         </div>
         <div>
-          <p>password</p>
+          <p className="mb-2 text-gray-400">password</p>
           <input className={inputStyle} ref={passwordRef} type="password" />
         </div>
-        <div className="flex justify-between">
-          <button onClick={signInHandler}>로그인</button>
-          <Link to="/signup">회원가입</Link>
-        </div>
+        <Link
+          className="text-center text-sm text-gray-300 hover:underline"
+          to="/signup"
+        >
+          아직 직원등록을 안하셨나요 ?
+        </Link>
+        <button
+          onClick={signInHandler}
+          className="w-full text-center bg-blue-400 text-white p-2 rounded-lg hover:bg-blue-500 transition"
+        >
+          로그인
+        </button>
       </div>
     </div>
   );

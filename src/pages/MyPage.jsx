@@ -6,7 +6,7 @@ export default function MyPage() {
 
   return (
     <section className="p-8">
-      <img src={loginUser.image} alt="" />
+      <img src={loginUser?.image} alt="" />
     </section>
   );
 }

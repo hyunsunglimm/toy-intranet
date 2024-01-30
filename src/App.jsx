@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import MyPage from "./pages/MyPage";
@@ -21,9 +21,6 @@ function App() {
     (employee) => employee.email === user?.email
   );
 
-  const isLogin = useLocation().pathname === "/login";
-  const isSignUp = useLocation().pathname === "/signup";
-
   useEffect(() => {
     client
       .fetch(
@@ -41,7 +38,7 @@ function App() {
     <EmployeeContext.Provider value={{ employees, loginUser }}>
       <Header />
       <div className="flex">
-        {!(isLogin || isSignUp) && <Sidebar />}
+        <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/mypage" element={<MyPage />} />
