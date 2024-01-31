@@ -1,9 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addEmployee } from "../sanity/employee";
 import Input from "../components/Input";
@@ -89,8 +85,7 @@ export default function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         addEmployee(userData);
-        signOut(auth); // createUserWithEmailAndPassword함수가 동작하면 회원가입 후 자동으로 로그인함. 이를 막기위해 임시로 signOut함수사용
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -111,62 +106,64 @@ export default function SignUp() {
   };
 
   return (
-    <div className="p-8 w-full flex justify-center">
-      <div className="bg-white rounded-lg w-[600px] p-8 h-min">
-        <p className="text-center text-[20px] font-bold mb-4">직원 등록</p>
-        <form className="flex flex-col gap-4" onSubmit={signInHandler}>
-          <ImageUpload
-            message={errorMessage.imageMessage}
-            handleChange={handleChange}
-            file={file}
-          />
-          <Input
-            message={errorMessage.emailMessage}
-            label="Email"
-            type="email"
-            ref={emailRef}
-          />
-          <Input
-            message={errorMessage.passwordMessage}
-            label="Password"
-            type="password"
-            ref={passwordRef}
-          />
-          <Input label="Name" ref={nameRef} />
-          <Input label="Age" type="number" ref={ageRef} />
-          <div>
-            <p className="mb-2 text-gray-400">Department</p>
-            <select
-              ref={departmentRef}
-              className="border-2 focus:border-blue-300 outline-none w-full rounded-md py-1 px-2 h-[36px]"
-              required
-            >
-              <option>developer</option>
-              <option>designer</option>
-              <option>planner</option>
-            </select>
-          </div>
-          <div>
-            <p className="mb-2 text-gray-400">WorkingHours</p>
-            <div className="flex justify-between">
-              <div>
-                <label className="mr-4">시작 시간</label>
-                <input ref={startTimeRef} type="time" required />
-              </div>
-              <div>
-                <label className="mr-4">종료 시간</label>
-                <input ref={endTimeRef} type="time" required />
+    <>
+      <div className="p-8 w-full flex justify-center">
+        <div className="bg-white rounded-lg w-[600px] p-8 h-min">
+          <p className="text-center text-[20px] font-bold mb-4">직원 등록</p>
+          <form className="flex flex-col gap-4" onSubmit={signInHandler}>
+            <ImageUpload
+              message={errorMessage.imageMessage}
+              handleChange={handleChange}
+              file={file}
+            />
+            <Input
+              message={errorMessage.emailMessage}
+              label="Email"
+              type="email"
+              ref={emailRef}
+            />
+            <Input
+              message={errorMessage.passwordMessage}
+              label="Password"
+              type="password"
+              ref={passwordRef}
+            />
+            <Input label="Name" ref={nameRef} />
+            <Input label="Age" type="number" ref={ageRef} />
+            <div>
+              <p className="mb-2 text-gray-400">Department</p>
+              <select
+                ref={departmentRef}
+                className="border-2 focus:border-blue-300 outline-none w-full rounded-md py-1 px-2 h-[36px]"
+                required
+              >
+                <option>developer</option>
+                <option>designer</option>
+                <option>planner</option>
+              </select>
+            </div>
+            <div>
+              <p className="mb-2 text-gray-400">WorkingHours</p>
+              <div className="flex justify-between">
+                <div>
+                  <label className="mr-4">시작 시간</label>
+                  <input ref={startTimeRef} type="time" required />
+                </div>
+                <div>
+                  <label className="mr-4">종료 시간</label>
+                  <input ref={endTimeRef} type="time" required />
+                </div>
               </div>
             </div>
-          </div>
-          <button
-            type="submit"
-            className="w-full text-center bg-blue-400 text-white p-2 rounded-lg hover:bg-blue-500 transition"
-          >
-            직원 등록
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full text-center bg-blue-400 text-white p-2 rounded-lg hover:bg-blue-500 transition"
+            >
+              직원 등록
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -42,7 +42,7 @@ function App() {
       )
       .then((data) => setEmployees(data))
       .catch(console.error);
-  }, [employees]);
+  }, []);
 
   return (
     <EmployeeContext.Provider value={{ employees, loginUser }}>
