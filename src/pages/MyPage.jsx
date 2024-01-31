@@ -3,7 +3,7 @@ import { EmployeeContext } from "../context/EmployeeContext";
 
 export default function MyPage() {
   const { loginUser } = useContext(EmployeeContext);
-  
+
 
   return (
   
@@ -27,4 +27,3 @@ export default function MyPage() {
     </section>
   );
 }
-

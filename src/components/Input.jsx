@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 const Input = forwardRef(function Input(
-  { message, label, type = "text" },
+  { message = "", label, type = "text" },
   ref
 ) {
   return (

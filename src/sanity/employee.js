@@ -29,8 +29,9 @@ export async function addEmployee({
         age,
         department,
         image: { asset: { _ref: result.document._id } },
-        isWorking: false,
+        isWorking: true,
         workingHours,
+        reasonForAbsence: "",
       });
     });
 }
