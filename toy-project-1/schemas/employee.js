@@ -38,6 +38,11 @@ export default {
       name: 'workingHours',
       type: 'string',
     },
+    {
+      title: 'ReasonForAbsence',
+      name: 'reasonForAbsence',
+      type: 'string',
+    },
   ],
   preview: {
     select: {title: 'name', media: 'image'},

@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+<<<<<<< HEAD
 import { EmployeeContext } from "../context/EmployeeContext";
 import Modal from "./Modal";
 import Timer from "./Timer";
+=======
+import { DataContext } from "../context/DataContext";
+>>>>>>> develop
 
 export default function Header() {
-  const { loginUser } = useContext(EmployeeContext);
+  const { loginUser } = useContext(DataContext);
 
   return (
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 bg-white relative">
