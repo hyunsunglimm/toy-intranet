@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import NoticePage from "./pages/NoticePage";
+import EmployeePage from "./pages/EmployeePage";
 
 function App() {
   const [employees, setEmployees] = useState([]);
@@ -111,6 +112,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/notice/:id" element={<NoticePage />} />
+          <Route path="/employee/:id" element={<EmployeePage />} />
         </Routes>
       </div>
     </DataContext.Provider>
