@@ -8,7 +8,7 @@ export default function Header() {
   const { loginUser } = useContext(DataContext);
 
   return (
-    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 bg-white relative">
+    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 bg-white">
       <Link to="/" className="font-bold text-[24px]">
         Logo
       </Link>
@@ -19,8 +19,8 @@ export default function Header() {
         </Link>
       ) : (
         <div className="flex justify-end items-center gap-4">
-          <p><Timer /></p>
-          <p><Modal /></p>
+          <Timer />
+          <Modal />
           <Link to="/mypage" className="flex items-center gap-4">
             <p>{loginUser?.name}</p>
             <img
