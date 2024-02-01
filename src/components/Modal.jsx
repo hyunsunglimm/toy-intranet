@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useRef } from 'react';
 import Modal from 'react-modal';
 import Timer from './Timer';
@@ -31,7 +30,6 @@ export default function Modaltest() {
           <div className="bg-white w-250 h-150 p-5">
             <Timer />
             <p>토글 형태의 근무 시작/종료 스위치 구현</p>
-            <p>모달을 활용한 근무 시작/ 종료 확인 창 구현</p>
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-auto"
               onClick={() => setModalOpen(false)}
@@ -44,31 +42,3 @@ export default function Modaltest() {
     </>
   );
 }
-=======
-import { forwardRef, useImperativeHandle, useRef } from "react";
-import { createPortal } from "react-dom";
-
-const Modal = forwardRef(function Modal({ children }, ref) {
-  const dialog = useRef();
-
-  useImperativeHandle(ref, () => {
-    return {
-      open() {
-        dialog.current.showModal();
-      },
-    };
-  });
-
-  return createPortal(
-    <dialog
-      ref={dialog}
-      className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md"
-    >
-      {children}
-    </dialog>,
-    document.getElementById("modal-root")
-  );
-});
-
-export default Modal;
->>>>>>> develop

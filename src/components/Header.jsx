@@ -1,18 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { EmployeeContext } from "../context/EmployeeContext";
-import Modal from "./Modal";
-import Timer from "./Timer";
-=======
-import { DataContext } from "../context/DataContext";
->>>>>>> develop
-=======
 import Modal from "./Modal";
 import Timer from "./Timer";
 import { DataContext } from "../context/DataContext";
->>>>>>> develop
 
 export default function Header() {
   const { loginUser } = useContext(DataContext);

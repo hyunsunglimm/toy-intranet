@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Timer () {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -22,4 +22,4 @@ export default function Timer () {
       <p>{formattedDateTime} ({dayOfWeek})</p>
     </div>
   );
-};
+}
