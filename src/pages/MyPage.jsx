@@ -56,9 +56,7 @@ export default function MyPage() {
           {loginUser?.email}
         </p>
         <div className="flex items-center justify-center gap-2">
-          <span className="text-xl">
-            {isWorking ? "부재중" : "근무중"}
-          </span>
+          <span className="text-xl">{isWorking ? "부재중" : "근무중"}</span>
           <label className="switch">
             <input
               type="checkbox"
@@ -82,4 +80,3 @@ export default function MyPage() {
     </section>
   );
 }
-
