@@ -30,7 +30,6 @@ export default function Modaltest() {
           <div className="bg-white w-250 h-150 p-5">
             <Timer />
             <p>토글 형태의 근무 시작/종료 스위치 구현</p>
-            <p>모달을 활용한 근무 시작/ 종료 확인 창 구현</p>
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-auto"
               onClick={() => setModalOpen(false)}
