@@ -34,7 +34,7 @@ export default function AbsenceEmployees() {
 
   return (
     <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-8">
+      <p className="mb-4">
         부재중인 직원 중 부재 항목에 따른 카테고리 메뉴로 데이터 필터링 기능
         구현
       </p>

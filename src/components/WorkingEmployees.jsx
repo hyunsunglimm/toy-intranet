@@ -10,7 +10,7 @@ export default function WorkingEmployees() {
 
   return (
     <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-8">현재 근무중인 직원</p>
+      <p className="mb-4">현재 근무중인 직원</p>
       <ul className="grid grid-cols-4 gap-4">
         {workingEmployees.map((employee) => (
           <EmployeeCard key={employee.id} employee={employee} />
