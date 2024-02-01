@@ -1,10 +1,15 @@
 import { useContext, useState } from "react";
-import { EmployeeContext } from "../context/EmployeeContext";
+import { DataContext } from "../context/DataContext";
 import EmployeeCard from "./EmployeeCard";
 
 export default function AbsenceEmployees() {
   const [reason, setReason] = useState("전체");
-  const { employees } = useContext(EmployeeContext);
+  const { employees } = useContext(DataContext);
+
+  if (!employees) {
+    return <div>Loading...</div>;
+  }
+
   const absenceEmployees = employees.filter(
     (employee) => employee.isWorking === false
   );
@@ -33,10 +38,9 @@ export default function AbsenceEmployees() {
   }
 
   return (
-    <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-4">
-        부재중인 직원 중 부재 항목에 따른 카테고리 메뉴로 데이터 필터링 기능
-        구현
+    <div className="bg-red-100 p-4 rounded-md">
+      <p className="mb-4 text-center uppercase text-red-400 font-bold text-[20px]">
+        not working now !
       </p>
       <div className="flex justify-end mb-3">
         <select className="px-2 py-1 rounded-md" onChange={handleChange}>
