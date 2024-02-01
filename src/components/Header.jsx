@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
+import Modaltest from "./Modal";
 
 export default function Header() {
   const { loginUser } = useContext(EmployeeContext);
@@ -18,6 +19,7 @@ export default function Header() {
       ) : (
         <div className="flex justify-end items-center gap-4">
           <p>현재 시간(컴포넌트화)</p>
+          <p className="flex justify-center items-center"><Modaltest /></p>
           <Link to="/mypage" className="flex items-center gap-4">
             <p>{loginUser?.name}</p>
             <img
