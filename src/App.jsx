@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import MyPage from "./pages/MyPage";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useEffect, useState } from "react";
@@ -109,7 +108,6 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/notice/:id" element={<NoticePage />} />
