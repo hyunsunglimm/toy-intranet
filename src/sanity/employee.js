@@ -29,8 +29,21 @@ export async function addEmployee({
         age,
         department,
         image: { asset: { _ref: result.document._id } },
-        isWorking: false,
+        isWorking: true,
         workingHours,
+        reasonForAbsence: "",
       });
     });
+}
+
+export async function updateEmployee(id, key, value) {
+  return client
+    .patch(id)
+    .set({ [key]: value })
+    .commit()
+    .catch((error) => console.log(error));
+}
+
+export async function deleteEmployee(id) {
+  return client.delete(id).catch((error) => console.log(error));
 }
