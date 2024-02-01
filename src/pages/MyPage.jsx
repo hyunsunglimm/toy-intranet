@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { EmployeeContext } from "../context/EmployeeContext";
+import { DataContext } from "../context/DataContext";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { FaGem } from "react-icons/fa";
 
 export default function MyPage() {
-  const { loginUser } = useContext(EmployeeContext);
+  const { loginUser } = useContext(DataContext);
   const [isWorking, setIsWorking] = useState(loginUser?.isWorking || false);
   const [absenceReason, setAbsenceReason] = useState(""); // 부재 사유 추가
 
@@ -56,9 +56,7 @@ export default function MyPage() {
           {loginUser?.email}
         </p>
         <div className="flex items-center justify-center gap-2">
-          <span className="text-xl">
-            {isWorking ? "부재중" : "근무중"}
-          </span>
+          <span className="text-xl">{isWorking ? "부재중" : "근무중"}</span>
           <label className="switch">
             <input
               type="checkbox"
@@ -82,4 +80,3 @@ export default function MyPage() {
     </section>
   );
 }
-

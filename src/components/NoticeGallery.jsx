@@ -1,29 +1,15 @@
-import { useEffect, useState } from "react";
-import client from "../sanity/client";
+import { useContext } from "react";
 import NoticeCard from "./NoticeCard";
+import { DataContext } from "../context/DataContext";
 
 export default function NoticeGallery() {
-  const [notices, setNotices] = useState([]);
-  console.log(notices[0]);
-
-  useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "notice"]{
-        ...,
-        "id": _id,
-        "thumbnail": thumbnail.asset->url,
-        "createdAt": _createdAt,
-        "updatedAt": _updatedAt,
-      }`
-      )
-      .then((data) => setNotices(data))
-      .catch(console.error);
-  }, []);
+  const { notices } = useContext(DataContext);
 
   return (
     <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-4">기업 공지 모음 갤러리</p>
+      <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+        notice gallery
+      </p>
       <ul className="grid grid-cols-4 gap-4">
         {notices.map((notice) => (
           <NoticeCard key={notice.id} notice={notice} />

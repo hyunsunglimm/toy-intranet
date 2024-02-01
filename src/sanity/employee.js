@@ -35,3 +35,15 @@ export async function addEmployee({
       });
     });
 }
+
+export async function updateEmployee(id, key, value) {
+  return client
+    .patch(id)
+    .set({ [key]: value })
+    .commit()
+    .catch((error) => console.log(error));
+}
+
+export async function deleteEmployee(id) {
+  return client.delete(id).catch((error) => console.log(error));
+}
