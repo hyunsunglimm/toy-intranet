@@ -1,6 +1,7 @@
-import { useContext, useState, useEffect } from "react";
-import { EmployeeContext } from "../context/EmployeeContext";
-import { MdOutlineMail, MdOutlineWorkOutline } from "react-icons/md";
+import { useContext, useState } from "react";
+import { DataContext } from "../context/DataContext";
+import { MdOutlineMail } from "react-icons/md";
+import { MdOutlineWorkOutline } from "react-icons/md";
 import { FaGem } from "react-icons/fa";
 
 const userinfocss = {
@@ -8,7 +9,7 @@ const userinfocss = {
 };
 
 export default function MyPage() {
-  const { loginUser } = useContext(EmployeeContext);
+  const { loginUser } = useContext(DataContext);
   const [isWorking, setIsWorking] = useState(loginUser?.isWorking || false);
   const [absenceReason, setAbsenceReason] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -27,10 +28,6 @@ export default function MyPage() {
     setAbsenceReason(e.target.value);
   };
 
-  const statusStyle = {
-    backgroundColor: isWorking ? "#FF0000" : "#00FF00",
-    color: "#FFFFFF",
-  };
 
   return (
     <section className="flex w-full bg-[#728395]">
@@ -116,8 +113,3 @@ export default function MyPage() {
     </section>
   );
 }
-
-
-
-
-

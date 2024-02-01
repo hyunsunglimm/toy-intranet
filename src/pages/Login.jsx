@@ -2,10 +2,10 @@ import { useContext, useRef, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import { EmployeeContext } from "../context/EmployeeContext";
+import { DataContext } from "../context/DataContext";
 
 export default function Login() {
-  const { employees } = useContext(EmployeeContext);
+  const { employees } = useContext(DataContext);
 
   const [errorMessage, setErrorMessage] = useState({
     emailMessage: "",

@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { addEmployee } from "../sanity/employee";
 import Input from "../components/Input";
 import ImageUpload from "../components/ImageUpload";
-import { EmployeeContext } from "../context/EmployeeContext";
+import { DataContext } from "../context/DataContext";
 
 export default function SignUp() {
-  const { employees } = useContext(EmployeeContext);
+  const { employees } = useContext(DataContext);
   const [file, setFile] = useState();
   const [errorMessage, setErrorMessage] = useState({
     imageMessage: "",
