@@ -52,27 +52,32 @@ function App() {
 
     const query = `*[_type == "employee"]`;
     const subscription = client.listen(query).subscribe((update) => {
-      const updatedEmployee = update.result;
       if (update.transition === "disappear") {
-        console.log(updatedEmployee);
-        const transformedEmployee = {
-          ...updatedEmployee,
-          id: updatedEmployee._id,
-          image: urlFor(updatedEmployee.image).url(),
-        };
+        console.log(update.transition);
+        // 삭제 로직 작성
+        return;
+      }
 
+      const updatedEmployee = update.result;
+      const transformedEmployee = {
+        ...updatedEmployee,
+        id: updatedEmployee._id,
+        image: urlFor(updatedEmployee.image).url(),
+      };
+
+      if (update.transition === "appear") {
+        setEmployees((prevEmployees) => {
+          return [...prevEmployees, transformedEmployee];
+        });
+      }
+
+      if (update.transition === "update") {
         setEmployees((prevEmployees) => {
           const existingEmployeeIndex = prevEmployees.findIndex(
             (employee) => employee.id === transformedEmployee.id
           );
-          if (existingEmployeeIndex !== -1) {
-            prevEmployees.splice(existingEmployeeIndex, 1, transformedEmployee);
-            console.log("직원 수정");
-            return [...prevEmployees];
-          } else {
-            console.log("직원 추가");
-            return [...prevEmployees, transformedEmployee];
-          }
+          prevEmployees.splice(existingEmployeeIndex, 1, transformedEmployee);
+          return [...prevEmployees];
         });
       }
     });
