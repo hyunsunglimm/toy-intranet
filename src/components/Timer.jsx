@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
+=======
+import { useState, useEffect } from "react";
+>>>>>>> develop
 
-export default function Timer () {
+export default function Timer() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -13,13 +17,19 @@ export default function Timer () {
     return () => clearInterval(intervalId);
   }, []); // 두 번째 매개변수에 빈 배열을 전달하여 최초 렌더링 시에만 useEffect가 실행되도록 함
 
-  const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const dayOfWeek = daysOfWeek[currentDateTime.getDay()]; // 현재 날짜의 요일을 가져옴
   const formattedDateTime = currentDateTime.toLocaleString(); // 날짜 및 시간을 지역 시간 문자열로 변환
 
   return (
     <div>
-      <p>{formattedDateTime} ({dayOfWeek})</p>
+      <p>
+        {formattedDateTime} ({dayOfWeek})
+      </p>
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

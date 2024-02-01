@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function EmployeeCard({ employee }) {
   const {
     name,
@@ -8,6 +10,7 @@ export default function EmployeeCard({ employee }) {
     isWorking,
     workingHours,
     reasonForAbsence,
+    id
   } = employee;
 
   const isReason = isWorking || reasonForAbsence;
@@ -34,10 +37,11 @@ export default function EmployeeCard({ employee }) {
             {reasonForAbsence}
           </p>
         )}
-
-        <button className="bg-blue-400 text-white w-full p-1 rounded-lg hover:bg-blue-500 transition mt-4">
-          VIEW PROFILE
-        </button>
+        <Link to={`/employee/${id}`}>
+          <button className="bg-blue-400 text-white w-full p-1 rounded-lg hover:bg-blue-500 transition mt-4">
+            VIEW PROFILE
+          </button>
+        </Link>
       </div>
     </li>
   );
