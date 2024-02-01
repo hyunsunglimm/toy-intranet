@@ -17,6 +17,10 @@
     "react-dom": "^18.2.0",
 <<<<<<< HEAD
     "react-modal": "^3.16.1",
+<<<<<<< HEAD
+=======
+    "react-icons": "^5.0.1",
+>>>>>>> develop
 =======
     "react-icons": "^5.0.1",
 >>>>>>> develop
