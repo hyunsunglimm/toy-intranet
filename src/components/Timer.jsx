@@ -19,7 +19,7 @@ export default function Timer () {
 
   return (
     <div>
-      <p>현재 시간: {formattedDateTime} ({dayOfWeek})</p>
+      <p>{formattedDateTime} ({dayOfWeek})</p>
     </div>
   );
 };

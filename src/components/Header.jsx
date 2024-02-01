@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
-import Modaltest from "./Modal";
+import Modal from "./Modal";
 import Timer from "./Timer";
 
 export default function Header() {
@@ -20,7 +20,7 @@ export default function Header() {
       ) : (
         <div className="flex justify-end items-center gap-4">
           <p><Timer /></p>
-          <p className="flex justify-center items-center"><Modaltest /></p>
+          <p><Modal /></p>
           <Link to="/mypage" className="flex items-center gap-4">
             <p>{loginUser?.name}</p>
             <img
