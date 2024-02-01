@@ -1,18 +1,25 @@
 import { useContext, useState } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
 import { MdOutlineMail } from "react-icons/md";
+import { MdOutlineWorkOutline } from "react-icons/md";
+import { FaGem } from "react-icons/fa";
 
 export default function MyPage() {
   const { loginUser } = useContext(EmployeeContext);
   const [isWorking, setIsWorking] = useState(loginUser?.isWorking || false);
+  const [absenceReason, setAbsenceReason] = useState(""); // 부재 사유 추가
 
   const toggleStatus = () => {
     setIsWorking(!isWorking);
   };
 
+  const handleAbsenceReasonChange = (e) => {
+    setAbsenceReason(e.target.value);
+  };
+
   const statusStyle = {
-    backgroundColor: isWorking ? "#FF0000" : "#00FF00", // 연두색 또는 빨간색 배경색을 선택
-    color: "#FFFFFF", // 텍스트 색상을 흰색으로 설정
+    backgroundColor: isWorking ? "#FF0000" : "#00FF00",
+    color: "#FFFFFF",
   };
 
   return (
@@ -35,18 +42,44 @@ export default function MyPage() {
           src={loginUser?.image}
           alt="user"
         />
-        <p className="text-2xl">{loginUser?.name}</p>
-        <p className="text-xl">{loginUser?.age}</p>
-        <p className="text-xl">{loginUser?.department}</p>
-        <p className="text-xl flex items-center justify-center"><MdOutlineMail />{loginUser?.email}</p>
-        <button
-          className="bg-[#728395 m-10 text-xl"
-          style={statusStyle} // 이 스타일을 버튼에 적용
-          onClick={toggleStatus}
-        >
-          {isWorking ? "부재중" : "근무중"}
-        </button>
+        <p className="text-3xl">{loginUser?.name}</p>
+        <p className="text-xl flex items-center justify-center gap-2">
+          <FaGem />
+          {loginUser?.age}
+        </p>
+        <p className="text-xl flex items-center justify-center gap-2">
+          <MdOutlineWorkOutline />
+          {loginUser?.department}
+        </p>
+        <p className="text-xl flex items-center justify-center gap-2">
+          <MdOutlineMail />
+          {loginUser?.email}
+        </p>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-xl">
+            {isWorking ? "부재중" : "근무중"}
+          </span>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={isWorking}
+              onChange={toggleStatus}
+            />
+            <span className="slider round"></span>
+          </label>
+        </div>
+        {isWorking && (
+          <div>
+            <textarea
+              className="mt-4 p-2 border border-gray-400 rounded"
+              placeholder="부재 사유를 입력하세요"
+              value={absenceReason}
+              onChange={handleAbsenceReasonChange}
+            />
+          </div>
+        )}
       </div>
     </section>
   );
 }
+
