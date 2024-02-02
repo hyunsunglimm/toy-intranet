@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useState, useEffect } from 'react';
-=======
 import { useState, useEffect } from "react";
->>>>>>> develop
 
 export default function Timer() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -28,8 +24,4 @@ export default function Timer() {
       </p>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> develop
