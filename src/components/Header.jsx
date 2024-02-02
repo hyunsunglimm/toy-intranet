@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import Timer from "./Timer";
 import { DataContext } from "../context/DataContext";
 
-
 export default function Header() {
   const { loginUser } = useContext(DataContext);
 
@@ -20,11 +19,12 @@ export default function Header() {
         </Link>
       ) : (
         <div className="flex justify-end items-center gap-4">
-
           <Timer />
           <Modal />
-          <Link to={`/employee/${loginUser.id}`} className="flex items-center gap-4">
-
+          <Link
+            to={`/employee/${loginUser.id}`}
+            className="flex items-center gap-4"
+          >
             <p>{loginUser?.name}</p>
             <img
               className="w-[50px] h-[50px] object-cover rounded-full"
