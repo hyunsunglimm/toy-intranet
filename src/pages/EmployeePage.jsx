@@ -2,17 +2,16 @@ import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { MdOutlineMail } from "react-icons/md";
 import { useParams } from "react-router-dom";
+import Toggle from "../components/Toggle";
 
 export default function EmployeePage() {
   const { employees } = useContext(DataContext);
   const params = useParams();
   const employee = employees.find((employee) => employee.id === params.id);
-  console.log(employee?.reasonForAbsence);
 
-  /* 토글 버튼의 클래스 */
-  const toggleButtonClass = employee?.isWorking
-    ? "bg-green-500 text-white"
-    : "bg-red-500 text-white";
+  const handleChange = () => {
+    setIsWorking(!employee?.isWorking);
+  };
 
   return (
     <section className="flex w-full bg-[#DBE9FE]">
@@ -30,7 +29,7 @@ export default function EmployeePage() {
         </div>
         <div className="h-[20%] bg-[#DBE9FE] text-center w-[80%] flex flex-col justify-center">
           <p className="text-5xl p-2 text-[#7E7E95]">{employee?.name}</p>
-          <p className="text-2xl p-2 text-[#aaaabb]">{employee?.department}</p>
+          <p className="text-3xl p-2 text-[#aaaabb]">{employee?.department}</p>
         </div>
       </div>
 
@@ -38,9 +37,8 @@ export default function EmployeePage() {
         <div className="py-[80px] w-[85%] h-2/3 border-b-2 border-[#7E7E95] relative">
           <p className="text-4xl text-[#7E7E95] mb-5">Work status :</p>
           <div className="flex items-center">
-            <button className={`p-2 rounded ${toggleButtonClass}`}>
-              {employee?.isWorking ? "근무 중" : "부재 중"}
-            </button>
+            <Toggle checked={employee?.isWorking} onChange={handleChange} />
+
             {!employee?.isWorking && (
               <p className="text-2xl text-[#7E7E95]">
                 ({employee?.reasonForAbsence || "부재 사유를 입력해주세요!"})
