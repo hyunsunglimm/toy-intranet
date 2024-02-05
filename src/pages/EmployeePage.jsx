@@ -1,16 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
 import { MdOutlineMail } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Toggle from "../components/Toggle";
+import { updateEmployee } from "../sanity/employee";
 
 export default function EmployeePage() {
-  const { employees } = useContext(DataContext);
+  const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
   const employee = employees.find((employee) => employee.id === params.id);
-
+  console.log(employee?.email);
   const handleChange = () => {
-    setIsWorking(!employee?.isWorking);
+    if (employee.id === loginUser.id) {
+      updateEmployee(employee.id, "isWorking", !employee.isWorking);
+    }
   };
 
   return (
@@ -37,7 +40,7 @@ export default function EmployeePage() {
         <div className="py-[80px] w-[85%] h-2/3 border-b-2 border-[#7E7E95] relative">
           <p className="text-4xl text-[#7E7E95] mb-5">Work status :</p>
           <div className="flex items-center">
-            <Toggle checked={employee?.isWorking} onChange={handleChange} />
+            <Toggle isChecked={employee?.isWorking} onChange={handleChange} />
 
             {!employee?.isWorking && (
               <p className="text-2xl text-[#7E7E95]">
