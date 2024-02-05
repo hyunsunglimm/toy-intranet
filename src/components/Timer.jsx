@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export default function Timer() {
+export default function Timer({ openModal }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   useEffect(() => {
     // 1초마다 현재 날짜 및 시간을 업데이트
@@ -15,14 +15,15 @@ export default function Timer() {
   const hours = currentDateTime.getHours();
   const minutes = currentDateTime.getMinutes();
   // const seconds = currentDateTime.getSeconds();
-  const ampm = hours >= 12 ? '오후' : '오전';
+  const ampm = hours >= 12 ? "오후" : "오전";
   const formattedHours = hours % 12 || 12;
-  const formattedDateTime = `${year}년 ${currentDateTime.getMonth() + 1}월 ${currentDateTime.getDate()}일 ${ampm} ${formattedHours}시 ${minutes}분`;
+  const formattedDateTime = `${year}년 ${
+    currentDateTime.getMonth() + 1
+  }월 ${currentDateTime.getDate()}일 ${ampm} ${formattedHours}시 ${minutes}분`;
+
   return (
-    <div>
-      <p>
-        {formattedDateTime} ({dayOfWeek})
-      </p>
-    </div>
+    <p onClick={openModal}>
+      {formattedDateTime} ({dayOfWeek})
+    </p>
   );
 }
