@@ -15,7 +15,15 @@ export default function Timer() {
 
   const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const dayOfWeek = daysOfWeek[currentDateTime.getDay()]; // 현재 날짜의 요일을 가져옴
-  const formattedDateTime = currentDateTime.toLocaleString(); // 날짜 및 시간을 지역 시간 문자열로 변환
+  const year = currentDateTime.getFullYear();
+  const hours = currentDateTime.getHours();
+  const minutes = currentDateTime.getMinutes();
+  // const seconds = currentDateTime.getSeconds();
+  const ampm = hours >= 12 ? '오후' : '오전';
+  const formattedHours = hours % 12 || 12;
+
+
+  const formattedDateTime = `${year}년 ${currentDateTime.getMonth() + 1}월 ${currentDateTime.getDate()}일 ${ampm} ${formattedHours}시 ${minutes}분`;
 
   return (
     <div>
