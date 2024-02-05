@@ -4,21 +4,17 @@ import { useContext, useState, useEffect, useRef } from "react";
 import Modal from "./Modal";
 import Timer from "./Timer";
 import { DataContext } from "../context/DataContext";
-
 export default function Header() {
   const { loginUser } = useContext(DataContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
-
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
-
   function signOutHandler() {
     const auth = getAuth();
     signOut(auth)
@@ -29,11 +25,9 @@ export default function Header() {
         console.log(error);
       });
   }
-
   const goToMyPage = () => {
     navigate(`/employee/${loginUser.id}`);
   };
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -44,14 +38,11 @@ export default function Header() {
         closeDropdown();
       }
     };
-
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
   return (
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 bg-white">
       <Link to="/" className="font-bold text-[24px]">
@@ -65,14 +56,17 @@ export default function Header() {
           Login
         </Link>
       ) : (
-        <div className="flex justify-end items-center gap-4">
+        <div className="relative flex justify-end items-center gap-4">
           <Timer />
           <Modal />
-          <Link
-            to={`/employee/${loginUser.id}`}
-            className="flex items-center gap-4"
+          <div
+            className="flex items-center gap-4 relative"
+            onClick={handleDropdownToggle}
+            ref={dropdownRef}
           >
-            <p>{loginUser?.name}</p>
+            <p  onClick={handleDropdownToggle}
+                ref={dropdownRef}>
+                {loginUser?.name}</p>
             <img
               className="w-[50px] h-[50px] object-cover rounded-full"
               src={loginUser?.image}
