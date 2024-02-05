@@ -65,17 +65,14 @@ export default function Header() {
           Login
         </Link>
       ) : (
-        <div className="relative flex justify-end items-center gap-4">
+        <div className="flex justify-end items-center gap-4">
           <Timer />
           <Modal />
-          <div
-            className="flex items-center gap-4 relative"
-            onClick={handleDropdownToggle}
-            ref={dropdownRef}
+          <Link
+            to={`/employee/${loginUser.id}`}
+            className="flex items-center gap-4"
           >
-            <p  onClick={handleDropdownToggle}
-                ref={dropdownRef}>
-                {loginUser?.name}</p>
+            <p>{loginUser?.name}</p>
             <img
               className="w-[50px] h-[50px] object-cover rounded-full"
               src={loginUser?.image}
