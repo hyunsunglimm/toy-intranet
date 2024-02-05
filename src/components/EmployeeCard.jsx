@@ -10,7 +10,7 @@ export default function EmployeeCard({ employee }) {
     isWorking,
     workingHours,
     reasonForAbsence,
-    id
+    id,
   } = employee;
 
   const isReason = isWorking || reasonForAbsence;
