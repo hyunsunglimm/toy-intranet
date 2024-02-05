@@ -9,7 +9,6 @@ export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
   const employee = employees.find((employee) => employee.id === params.id);
-  console.log(employee?.email);
   const handleChange = () => {
     if (employee.id === loginUser.id) {
       updateEmployee(employee.id, "isWorking", !employee.isWorking);
