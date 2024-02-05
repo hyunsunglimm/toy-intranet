@@ -48,9 +48,7 @@ export default function Header() {
       <Link to="/" className="font-bold text-[24px]">
         Logo
       </Link>
-      <input
-        className="w-[400px] py-2 rounded-lg border px-4 absolute top-[19px] left-1/2 translate-x-[-50%]"
-      />
+      <input className="w-[400px] py-2 rounded-lg border px-4 absolute top-[19px] left-1/2 translate-x-[-50%]" />
       {!loginUser ? (
         <Link to="/login" className="p-2 border-2 rounded-lg">
           Login
@@ -64,9 +62,9 @@ export default function Header() {
             onClick={handleDropdownToggle}
             ref={dropdownRef}
           >
-            <p  onClick={handleDropdownToggle}
-                ref={dropdownRef}>
-                {loginUser?.name}</p>
+            <p onClick={handleDropdownToggle} ref={dropdownRef}>
+              {loginUser?.name}
+            </p>
             <img
               className="w-[50px] h-[50px] object-cover rounded-full"
               src={loginUser?.image}
@@ -76,12 +74,15 @@ export default function Header() {
             />
           </div>
           {isDropdownOpen && (
-            <div className="origin-top-right absolute right-0 mt-[140px] w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" ref={dropdownRef}>
+            <div
+              className="origin-top-right absolute right-0 mt-[140px] w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              ref={dropdownRef}
+            >
               <ul className="p-4">
                 <li>
                   <button onClick={goToMyPage}>마이페이지</button>
                 </li>
-                <li style={{ marginTop: '20px' }}>
+                <li style={{ marginTop: "20px" }}>
                   <button onClick={signOutHandler}>로그아웃</button>
                 </li>
               </ul>
