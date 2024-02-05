@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
 import DataContextProvider from "./context/DataContext";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -13,8 +12,7 @@ function App() {
   return (
     <DataContextProvider>
       <Header />
-      <div className="flex">
-        <Sidebar />
+      <div className="w-[1200px] mx-auto">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
