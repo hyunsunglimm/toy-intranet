@@ -29,7 +29,7 @@ export default function NoticePage() {
   }
 
   return (
-    <div className="p-8 w-full">
+    <div className="py-8">
       <div className="bg-white rounded-lg overflow-hidden">
         <img
           className="w-full h-[500px] object-cover"

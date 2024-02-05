@@ -1,5 +1,3 @@
-import React from "react";
-
 function Toggle({ isChecked, onChange }) {
   return (
     <div>
