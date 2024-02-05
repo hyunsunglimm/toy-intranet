@@ -4,7 +4,7 @@ export default function NoticeCard({ notice }) {
   const { title, thumbnail, id } = notice;
 
   return (
-    <li className="bg-white rounded-md overflow-hidden group cursor-pointer">
+    <div className="bg-white rounded-md overflow-hidden group cursor-pointer">
       <Link to={`/notice/${id}`}>
         <div className="overflow-hidden">
           <img
@@ -15,6 +15,6 @@ export default function NoticeCard({ notice }) {
         </div>
         <p className="text-center p-4">{title}</p>
       </Link>
-    </li>
+    </div>
   );
 }
