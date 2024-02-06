@@ -108,7 +108,13 @@ export default function EmployeePage() {
               {employee?.id === loginUser?.id && (
                 <button
                   onClick={deleteHandler}
-                  className={`${deleteButtonStyle} sticky border-red-600 text-red-600`}
+                  className={deleteButtonStyle}
+                  style={{
+                    fontWeight: "bold",
+                    position: "sticky",
+                    color: "#ef4444",
+                    borderColor: "#ef4444",
+                  }}
                 >
                   회원 탈퇴
                 </button>
