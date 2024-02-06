@@ -21,16 +21,11 @@ const Modal = forwardRef(function Modal({ children }, ref) {
   return createPortal(
     <dialog
       onClick={closeModal}
-      className="backdrop:bg-stone-900/90 rounded-lg p-8"
+      // className="backdrop:bg-stone-900/90 bg-white border-[1px] border-slate-400/30 rounded-lg p-8 text-slate-500"
+      className="backdrop:backdrop-blur-sm bg-white/20 border-[1px] border-slate-400/30 rounded-lg p-8 text-slate-300"
       ref={dialog}
     >
       {children}
-      <p
-        className="fixed top-10 right-10 text-white text-[32px] cursor-pointer"
-        onClick={() => dialog.current.close()}
-      >
-        X
-      </p>
     </dialog>,
     document.getElementById("modal")
   );
