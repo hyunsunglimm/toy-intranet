@@ -43,8 +43,8 @@ export default function AbsenceEmployees() {
 
   if (isLoading) {
     return (
-      <div className="bg-red-100 p-4 rounded-md">
-        <p className="mb-4 text-center uppercase text-red-400 font-bold text-[20px]">
+      <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+        <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           not working now !
         </p>
         <div className="flex justify-end mb-3">
@@ -65,8 +65,8 @@ export default function AbsenceEmployees() {
   }
 
   return (
-    <div className="bg-red-100 p-4 rounded-md">
-      <p className="mb-4 text-center uppercase text-red-400 font-bold text-[20px]">
+    <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
         not working now !
       </p>
       <div className="flex justify-end mb-3">
