@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
 import { deleteEmployee } from "../sanity/employee";
 import { introduction } from "../data/Introduction";
+import { deleteButtonStyle } from "../style/button";
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
@@ -38,10 +39,10 @@ export default function EmployeePage() {
   }
 
   return (
-    <section className="flex items-center h-[900px] ring-1 text-white rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[15%] mb-[10%]">
+    <section className="flex items-center h-[900px] ring-1 ring-slate-400/30 text-white rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[15%] mb-[10%]">
       <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
         <img
-          className="h-[10vw] w-[10vw] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
+          className="h-[10vw] w-[10vw] bg-white ring-2 ring-slate-400/30 rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
           src={employee.image}
           alt={`${employee.name}님의 프로필`}
         />
@@ -55,23 +56,20 @@ export default function EmployeePage() {
             <p className="mt-16">{employeeIntroduction()}</p>
           </div>
           <div className="p-12 w-full font-semibold flex text-[20px] justify-center">
-            <div className="w-1/2 border-r-[1px] border-white-500 p-8">
+            <div className="w-1/2 border-r-[1px] border-slate-300 p-8">
               <p>
                 Working hours :<br />
                 {employee.workingHours}
               </p>
             </div>
 
-            <div className="w-1/2 border-l-[1px] border-white-500 p-8">
+            <div className="w-1/2 border-l-[1px] border-slate-300 p-8">
               <p className="lowercase"> {employee.email}</p>
             </div>
           </div>
           {employee?.id === loginUser?.id && (
-            <button
-              onClick={deleteHandler}
-              className="m-10 bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
-            >
-              delete
+            <button onClick={deleteHandler} className={deleteButtonStyle}>
+              직원 탈퇴
             </button>
           )}
         </div>
