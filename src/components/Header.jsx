@@ -7,6 +7,7 @@ import { DataContext } from "../context/DataContext";
 import { updateEmployee } from "../sanity/employee";
 import Toggle from "./Toggle";
 import { buttonStyle } from "../style/button";
+import symbol from "/symbol.png";
 
 export default function Header() {
   const { loginUser } = useContext(DataContext);
@@ -37,12 +38,17 @@ export default function Header() {
   };
 
   return (
-    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-700/20">
+    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
         to="/"
-        className="font-bold text-[24px] uppercase text-slate-300 hover:text-slate-500 transition"
+        className="flex items-center font-bold text-[24px] uppercase text-slate-300 hover:text-slate-500 transition"
       >
-        intranet five
+        <img
+          className="w-[50px] mr-2"
+          src={symbol}
+          alt="intranet five symbol"
+        />
+        <p>intranet five</p>
       </Link>
       {loginUser && (
         <div className="flex justify-end items-center">
@@ -63,18 +69,18 @@ export default function Header() {
               />
             </div>
             <div
-              className={`fixed flex-col top-[100px] text-slate-300 rounded-md right-[20px] bg-slate-800 ${
+              className={`fixed flex-col top-[100px] text-slate-300 rounded-md right-[20px] bg-white/5 border-[1px] border-slate-400/30 ${
                 dropdownIsOpen ? "flex" : "hidden"
               }`}
             >
               <Link
                 to={`/employee/${loginUser.id}`}
-                className="py-4 px-12 hover:bg-slate-700 transition rounded-t-md"
+                className="py-4 px-12 border-b-[1px] border-slate-400/30 hover:bg-white/10 transition rounded-t-md"
               >
                 마이페이지
               </Link>
               <button
-                className="py-4 px-12 hover:bg-slate-700 transition rounded-b-md"
+                className="py-4 px-12 hover:bg-white/10 transition rounded-b-md"
                 onClick={signOutHandler}
               >
                 로그아웃
@@ -96,7 +102,7 @@ export default function Header() {
           <img
             src={loginUser?.image}
             alt={`${loginUser?.name}의 프로필사진`}
-            className="w-[200px] h-[200px] object-cover"
+            className="w-[200px] h-[200px] object-cover rounded-lg"
           />
           <Timer />
           <p>

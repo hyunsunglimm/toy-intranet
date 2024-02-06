@@ -16,13 +16,13 @@ export default function EmployeeCard({ employee }) {
   const isReason = isWorking || reasonForAbsence;
 
   return (
-    <li className="rounded-md h-[342px] bg-slate-800 relative hover:shadow-2xl shadow-indigo-500/50">
+    <li className="rounded-md h-[342px] bg-slate-800 relative hover:ring-1 ring-slate-400/30 transition">
       <Link
         to={`/employee/${id}`}
         className="flex flex-col h-full justify-center"
       >
         <img
-          className="w-[100px] h-[100px] rounded-full object-cover mx-auto"
+          className="w-[100px] h-[100px] rounded-full object-cover mx-auto bg-slate-300"
           src={image}
           alt=""
         />
