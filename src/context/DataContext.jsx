@@ -46,8 +46,12 @@ export default function DataContextProvider({ children }) {
     const query = `*[_type == "employee"]`;
     const subscription = client.listen(query).subscribe((update) => {
       if (update.transition === "disappear") {
-        console.log(update.transition);
-        // 삭제 로직 작성
+        setEmployees((prevEmployees) => {
+          const updatedEmployees = prevEmployees.filter(
+            (employee) => employee.id !== update.documentId
+          );
+          return updatedEmployees;
+        });
         return;
       }
 

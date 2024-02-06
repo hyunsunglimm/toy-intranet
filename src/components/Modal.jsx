@@ -21,7 +21,7 @@ const Modal = forwardRef(function Modal({ children }, ref) {
   return createPortal(
     <dialog
       onClick={closeModal}
-      className="backdrop:bg-stone-900/90"
+      className="backdrop:bg-stone-900/90 rounded-lg p-8"
       ref={dialog}
     >
       {children}

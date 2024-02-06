@@ -1,59 +1,72 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
-import { MdOutlineMail } from "react-icons/md";
-import { useParams } from "react-router-dom";
-import Toggle from "../components/Toggle";
-import { updateEmployee } from "../sanity/employee";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteUser, getAuth } from "firebase/auth";
+import { deleteEmployee } from "../sanity/employee";
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
+  const navigater = useNavigate();
   const employee = employees.find((employee) => employee.id === params.id);
-  const handleChange = () => {
-    if (employee.id === loginUser.id) {
-      updateEmployee(employee.id, "isWorking", !employee.isWorking);
-    }
-  };
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (!employee) {
+    return <p>loading...</p>;
+  }
+
+  function deleteHandler() {
+    deleteUser(user)
+      .then(() => {
+        deleteEmployee(loginUser.id);
+        navigater("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
-    <section className="flex w-full bg-[#DBE9FE]">
-      <div className="w-1/2 p-[80px] flex flex-col items-center">
-        <div className="p-8 bg-[#F7F7FB] w-[70%] h-[80%] flex justify-center rounded-lg">
-          <div
-            className="p-3 w-[100%] h-[100%] bg-[#CED3DD] rounded-lg"
-            style={{
-              backgroundImage: `url(${employee?.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-        </div>
-        <div className="h-[20%] bg-[#DBE9FE] text-center w-[80%] flex flex-col justify-center">
-          <p className="text-5xl p-2 text-[#7E7E95]">{employee?.name}</p>
-          <p className="text-3xl p-2 text-[#aaaabb]">{employee?.department}</p>
-        </div>
-      </div>
-
-      <div className="w-1/2 bg-[#DBE9FE]">
-        <div className="py-[80px] w-[85%] h-2/3 border-b-2 border-[#7E7E95] relative">
-          <p className="text-4xl text-[#7E7E95] mb-5">Work status :</p>
-          <div className="flex items-center">
-            <Toggle isChecked={employee?.isWorking} onChange={handleChange} />
-
-            {!employee?.isWorking && (
-              <p className="text-2xl text-[#7E7E95]">
-                ({employee?.reasonForAbsence || "부재 사유를 입력해주세요!"})
-              </p>
-            )}
+    <div
+      className="h-screen flex flex-col justify-center items-center"
+      style={{
+        backgroundImage: `url(/employeebg.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <section className="text-white w-[80%] py-8 backdrop-blur-md backdrop-sepia-0 bg-white/10 relative">
+        <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
+          <img
+            className="mb-[100px] h-[200px] w-[200px] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute"
+            src={employee.image}
+            alt={`${employee.name}님의 프로필`}
+          />
+          <div className="mt-[90px] flex flex-col gap-3 items-center">
+            <p>{employee.name}</p>
+            <p>age: {employee.age}</p>
+            <p className="text-center font-semibold text-[24px] uppercase">
+              {employee.department}
+            </p>
+            <p className="mt-16 w-2/3">
+              "동적이고 사용자 친화적인 웹 애플리케이션을 만드는 프론트엔드
+              개발자로, 웹 기술에 열정을 가지고 있습니다."
+            </p>
           </div>
 
-          <p className="text-2xl text-[#aaaabb] absolute right-0 bottom-0 p-4 flex items-center gap-1 ">
-            <MdOutlineMail />
-            {employee?.email}
-          </p>
+          <div className="p-12 font-semibold uppercase flex gap-8 text-[20px] justify-center">
+            <p className="boder-l">working hours: {employee.workingHours}</p>
+            <p className="font-semibold">{employee.email}</p>
+          </div>
+          <button
+            onClick={deleteHandler}
+            className="bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
+          >
+            delete
+          </button>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

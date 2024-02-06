@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <div
       style={{ height: contentHeight }}
-      className="flex w-full justify-center items-center"
+      className="flex justify-center items-center"
     >
       <form
         className="w-[400px] rounded-lg p-4 bg-white flex flex-col gap-4"
