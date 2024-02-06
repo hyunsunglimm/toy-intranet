@@ -36,7 +36,7 @@ export default function EmployeePage() {
         backgroundPosition: "center",
       }}
     >
-      <section className="text-white w-[80%] py-8 backdrop-blur-md backdrop-sepia-0 bg-white/10 relative">
+      <section className="text-white w-[80%] rounded-lg py-8 backdrop-blur-md backdrop-sepia-0 bg-white/10 relative">
         <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
           <img
             className="mb-[100px] h-[200px] w-[200px] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute"
@@ -55,7 +55,7 @@ export default function EmployeePage() {
             </p>
           </div>
 
-          <div className="p-12 font-semibold uppercase flex gap-8 text-[20px] justify-center">
+          <div className="p-12 font-semibold flex gap-8 text-[20px] justify-center">
             <p className="boder-l">working hours: {employee.workingHours}</p>
             <p className="font-semibold">{employee.email}</p>
           </div>
