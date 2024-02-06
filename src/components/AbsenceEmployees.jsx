@@ -61,15 +61,19 @@ export default function AbsenceEmployees() {
 
   if (isLoading) {
     return (
-      <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+      <div className="p-4 rounded-md bg-white/10">
         <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           not working now !
         </p>
         <div className="flex justify-end mb-3">
-          <select className="px-2 py-1 rounded-md" onChange={handleChange}>
+          <select
+            className="p-2 rounded-md bg-slate-800 text-slate-300"
+            onChange={handleChange}
+          >
             <option>전체</option>
             <option>연차</option>
             <option>반차</option>
+            <option>비근무시간</option>
             <option>미기입</option>
           </select>
         </div>
@@ -83,15 +87,19 @@ export default function AbsenceEmployees() {
   }
 
   return (
-    <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+    <div className="p-4 rounded-md bg-white/10">
       <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
         not working now !
       </p>
       <div className="flex justify-end mb-3">
-        <select className="px-2 py-1 rounded-md" onChange={handleChange}>
+        <select
+          className="p-2 rounded-md bg-slate-800 text-slate-300"
+          onChange={handleChange}
+        >
           <option>전체</option>
           <option>연차</option>
           <option>반차</option>
+          <option>비근무시간</option>
           <option>미기입</option>
         </select>
       </div>
