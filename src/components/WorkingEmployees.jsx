@@ -16,7 +16,7 @@ export default function WorkingEmployees() {
   if (isLoading) {
     return (
       <div className="p-4 rounded-md bg-white/10">
-        <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
+        <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
           working now !
         </p>
         <ul className="grid grid-cols-4 gap-4">
@@ -30,7 +30,7 @@ export default function WorkingEmployees() {
 
   return (
     <div className="p-4 rounded-md bg-white/10">
-      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
+      <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
         working now !
       </p>
       <ul className="grid grid-cols-4 gap-4">

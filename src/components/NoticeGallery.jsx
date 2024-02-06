@@ -20,7 +20,7 @@ export default function NoticeGallery() {
     slidesToScroll: 1,
   };
 
-  if (isLoading) {
+  if (!isLoading) {
     return (
       <div className="p-4 rounded-md bg-white/10">
         <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
