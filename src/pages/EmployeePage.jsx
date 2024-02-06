@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { DataContext } from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
 import { deleteEmployee } from "../sanity/employee";
 import { introduction } from "../data/Introduction";
 import { deleteButtonStyle } from "../style/button";
+import Modal from "../components/Modal";
+import Timer from "../components/Timer";
 import { FaPencil } from "react-icons/fa6";
 
 export default function EmployeePage() {
@@ -14,6 +16,11 @@ export default function EmployeePage() {
   const employee = employees.find((employee) => employee.id === params.id);
   const auth = getAuth();
   const user = auth.currentUser;
+  const modalRef = useRef();
+
+  const handleOpenModal = () => {
+    modalRef.current.open(); // 모달 열기
+  };
 
   // const contentHeight = `${window.innerHeight - 500}px`;
 
@@ -66,7 +73,7 @@ export default function EmployeePage() {
                 <p className="font-semibold text-[24px] uppercase mb-8">
                   {employee.department}
                 </p>
-                <p>{employeeIntroduction()}</p>
+                <p className="text-[22px]">{employeeIntroduction()}</p>
               </div>
             </div>
             <div className="w-full font-semibold flex text-[20px] justify-center reletive">
@@ -82,10 +89,32 @@ export default function EmployeePage() {
             </div>
           </div>
           {employee?.id === loginUser?.id && (
-            <button onClick={deleteHandler} className={deleteButtonStyle}>
+            <button onClick={handleOpenModal} className={deleteButtonStyle}>
               회원 탈퇴
             </button>
           )}
+          <Modal ref={modalRef}>
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-[20px] font-bold uppercase">
+                {loginUser?.department}
+              </p>
+              <img
+                src={loginUser?.image}
+                alt={`${loginUser?.name}의 프로필사진`}
+                className="w-[200px] h-[200px] object-cover rounded-lg"
+              />
+              <Timer />
+              <p>회원 탈퇴 하시겠습니까?</p>
+              {employee?.id === loginUser?.id && (
+                <button
+                  onClick={deleteHandler}
+                  className={`${deleteButtonStyle} sticky border-red-600 text-red-600`}
+                >
+                  회원 탈퇴
+                </button>
+              )}
+            </div>
+          </Modal>
         </div>
       </div>
     </div>
