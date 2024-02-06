@@ -1,7 +1,7 @@
 export default function ImageUpload({ message, handleChange, file }) {
   return (
     <div>
-      <p className="mb-2 text-gray-400">Image</p>
+      <p className="mb-2 text-slate-300">Image</p>
       <input
         className="hidden"
         id="input-userImg"
@@ -11,7 +11,7 @@ export default function ImageUpload({ message, handleChange, file }) {
       />
       <label
         htmlFor="input-userImg"
-        className="block w-[100px] h-[100px] border-2 hover:border-blue-300 rounded-full cursor-pointer mx-auto hover:bg-blue-50 transition"
+        className="block w-[100px] h-[100px] border-[1px] bg-white/0 border-slate-400/30 hover:border-slate-400/50 rounded-full cursor-pointer mx-auto hover:bg-white/10 transition"
       >
         {file && (
           <img
