@@ -6,9 +6,9 @@ const Input = forwardRef(function Input(
 ) {
   return (
     <div>
-      <p className="mb-2 text-gray-400">{label}</p>
+      <p className="mb-2 text-slate-300">{label}</p>
       <input
-        className="border-2 focus:border-blue-300 outline-none w-full rounded-md py-1 px-2"
+        className="border-[1px] border-slate-400/30 outline-none w-full rounded-md py-1 px-2 bg-white/0 text-slate-300"
         ref={ref}
         type={type}
         required

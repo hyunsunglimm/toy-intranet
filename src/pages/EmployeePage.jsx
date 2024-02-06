@@ -16,7 +16,7 @@ export default function EmployeePage() {
     return <p>loading...</p>;
   }
 
-  function employeeintroduction() {
+  function employeeIntroduction() {
     if (employee.department === "developer") {
       return introduction.developer;
     } else if (employee.department === "designer") {
@@ -52,7 +52,7 @@ export default function EmployeePage() {
             <p className="font-semibold text-[24px] uppercase">
               {employee.department}
             </p>
-            <p className="mt-16">{employeeintroduction()}</p>
+            <p className="mt-16">{employeeIntroduction()}</p>
           </div>
           <div className="p-12 w-full font-semibold flex text-[20px] justify-center">
             <div className="w-1/2 border-r-[1px] border-white-500 p-8">
@@ -66,12 +66,14 @@ export default function EmployeePage() {
               <p className="lowercase"> {employee.email}</p>
             </div>
           </div>
-          <button
-            onClick={deleteHandler}
-            className="m-10 bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
-          >
-            delete
-          </button>
+          {employee?.id === loginUser?.id && (
+            <button
+              onClick={deleteHandler}
+              className="m-10 bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
+            >
+              delete
+            </button>
+          )}
         </div>
       </div>
     </section>

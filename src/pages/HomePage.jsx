@@ -8,6 +8,7 @@ export default function HomePage() {
       <NoticeGallery />
       <WorkingEmployees />
       <AbsenceEmployees />
+      {/* <div className="h-[3000px]"></div> */}
     </div>
   );
 }

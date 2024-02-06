@@ -3,6 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { DataContext } from "../context/DataContext";
+import { buttonStyle } from "../style/button";
 
 export default function Login() {
   const { employees } = useContext(DataContext);
@@ -52,10 +53,12 @@ export default function Login() {
       className="flex justify-center items-center"
     >
       <form
-        className="w-[400px] rounded-lg p-4 bg-white flex flex-col gap-4"
+        className="w-[400px] rounded-lg p-4 bg-white/10 flex flex-col gap-4"
         onSubmit={signInHandler}
       >
-        <p className="text-center font-bold">Welcome to Intranet Five !</p>
+        <p className="text-center font-bold text-lg text-slate-300">
+          Welcome to Intranet Five !
+        </p>
         <Input
           type="email"
           label="Email"
@@ -69,16 +72,13 @@ export default function Login() {
           message={errorMessage.passwordMessage}
         />
         <Link
-          className="text-center text-sm text-gray-300 hover:underline"
+          className="text-center text-sm text-slate-300 hover:underline"
           to="/signup"
         >
           아직 직원등록을 안하셨나요 ?
         </Link>
-        <button
-          type="submit"
-          className="w-full text-center bg-blue-400 text-white p-2 rounded-lg hover:bg-blue-500 transition"
-        >
-          로그인
+        <button type="submit" className={`${buttonStyle} w-full`}>
+          LOGIN
         </button>
       </form>
     </div>
