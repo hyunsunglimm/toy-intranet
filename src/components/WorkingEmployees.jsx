@@ -15,8 +15,8 @@ export default function WorkingEmployees() {
 
   if (isLoading) {
     return (
-      <div className="bg-blue-100 p-4 rounded-md">
-        <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+      <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+        <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           working now !
         </p>
         <ul className="grid grid-cols-4 gap-4">
@@ -29,8 +29,8 @@ export default function WorkingEmployees() {
   }
 
   return (
-    <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+    <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
         working now !
       </p>
       <ul className="grid grid-cols-4 gap-4">
