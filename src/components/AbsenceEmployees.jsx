@@ -6,12 +6,14 @@ import SkeletonEmployeeCard from "./skeleton/SkeletonEmployeeCard";
 
 export default function AbsenceEmployees() {
   const [reason, setReason] = useState("전체");
+  const [currentPage, setCurrentPage] = useState(1);
   const { employees } = useContext(DataContext);
 
   if (!employees) {
     return <div>Loading...</div>;
   }
 
+  {/* 만약 employees가 없으면 로딩 중임을 나타내는 화면을 반환 */}
   const absenceEmployees = employees.filter(
     (employee) => employee.isWorking === false
   );
@@ -20,23 +22,39 @@ export default function AbsenceEmployees() {
     switch (reason) {
       case "전체":
         return absenceEmployees;
-
       case "미기입":
         return absenceEmployees.filter(
-          (employees) => !employees.reasonForAbsence
+          (employee) => !employee.reasonForAbsence
         );
-
       default:
         return absenceEmployees.filter(
-          (employees) => employees.reasonForAbsence === reason
+          (employee) => employee.reasonForAbsence === reason
         );
     }
   }
 
+  // 페이지당 표시할 항목 수
+  const itemsPerPage = 8;
+
+  // 전체 필터된 직원 목록
   const filteredEmployees = getFilteredEmployees();
+
+  // 현재 페이지의 데이터 추출
+  const indexOfLastEmployee = currentPage * itemsPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - itemsPerPage;
+  const currentEmployees = filteredEmployees.slice(
+    indexOfFirstEmployee,
+    indexOfLastEmployee
+  );
+
+  // 페이지 변경 핸들러
+  function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
 
   function handleChange(e) {
     setReason(e.target.value);
+    setCurrentPage(1); // 필터 변경 시 페이지를 첫 페이지로 리셋
   }
 
   const isLoading = employees.length === 0;
@@ -86,10 +104,24 @@ export default function AbsenceEmployees() {
         </select>
       </div>
       <ul className="grid grid-cols-4 gap-4">
-        {filteredEmployees.map((employee) => (
+        {currentEmployees.map((employee) => (
           <EmployeeCard key={employee.id} employee={employee} />
         ))}
       </ul>
+      {/* 페이지네이션 컴포넌트 */}
+      <div className="flex justify-center mt-4">
+        {Array.from({ length: Math.ceil(filteredEmployees.length / itemsPerPage) }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`mx-1 px-3 py-1 rounded-md ${
+              currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
