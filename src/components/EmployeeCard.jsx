@@ -16,33 +16,31 @@ export default function EmployeeCard({ employee }) {
   const isReason = isWorking || reasonForAbsence;
 
   return (
-    <li className="flex flex-col p-4 rounded-md bg-white overflow-hidden relative">
-      <img
-        className="w-[100px] h-[100px] rounded-full object-cover mx-auto mt-4"
-        src={image}
-        alt=""
-      />
-      <div className="w-full mx-auto mt-4 text-center">
-        <p className="text-[20px] font-bold">{name}</p>
-        <p className="text-gray-400">{email}</p>
-        <p className="text-gray-400">{age}</p>
-        <p className="text-green-400">{department}</p>
-        <p className="text-gray-400 text-sm mt-2">{workingHours}</p>
-        {!isReason ? (
-          <p className="w-full text-center mt-2 text-sm text-red-400 absolute top-0 left-1/2 translate-x-[-50%]">
-            부재 사유를 기입해주세요 !
-          </p>
-        ) : (
-          <p className="absolute top-3 right-3 text-sm text-gray-400 font-bold">
-            {reasonForAbsence}
-          </p>
-        )}
-        <Link to={`/employee/${id}`}>
-          <button className="bg-blue-400 text-white w-full p-1 rounded-lg hover:bg-blue-500 transition mt-4">
-            VIEW PROFILE
-          </button>
-        </Link>
-      </div>
+    <li className="rounded-md h-[342px] bg-slate-800 relative hover:shadow-2xl shadow-indigo-500/50">
+      <Link
+        to={`/employee/${id}`}
+        className="flex flex-col h-full justify-center"
+      >
+        <img
+          className="w-[100px] h-[100px] rounded-full object-cover mx-auto"
+          src={image}
+          alt=""
+        />
+        <div className="w-full mx-auto mt-4 text-center text-slate-400 flex flex-col gap-2">
+          <p className="font-bold text-lg">{name}</p>
+          <p>{email}</p>
+          <p>{age}</p>
+          <p className="text-indigo-500">{department}</p>
+          <p>{workingHours}</p>
+          {!isReason ? (
+            <div className="w-4 h-4 rounded-full bg-red-500/80 shadow-lg shadow-red-500 absolute top-[-4px] right-[-4px]"></div>
+          ) : (
+            <p className="absolute top-3 right-3 text-sm text-gray-400 font-bold">
+              {reasonForAbsence}
+            </p>
+          )}
+        </div>
+      </Link>
     </li>
   );
 }
