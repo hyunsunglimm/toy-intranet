@@ -6,6 +6,7 @@ import Timer from "./Timer";
 import { DataContext } from "../context/DataContext";
 import { updateEmployee } from "../sanity/employee";
 import Toggle from "./Toggle";
+
 export default function Header() {
   const { loginUser } = useContext(DataContext);
 
@@ -35,7 +36,7 @@ export default function Header() {
   };
 
   return (
-    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 bg-white">
+    <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-md backdrop-sepia-0 bg-white/5 text-white">
       <Link
         to="/"
         className="font-bold text-[24px] uppercase hover:text-blue-400 transition"
