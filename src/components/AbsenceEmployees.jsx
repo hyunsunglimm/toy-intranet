@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import EmployeeCard from "./EmployeeCard";
+import { EMPLOYEE_SKELETON_ARRAY } from "../data/skeleton";
+import SkeletonEmployeeCard from "./skeleton/SkeletonEmployeeCard";
 
 export default function AbsenceEmployees() {
   const [reason, setReason] = useState("전체");
@@ -35,6 +37,31 @@ export default function AbsenceEmployees() {
 
   function handleChange(e) {
     setReason(e.target.value);
+  }
+
+  const isLoading = employees.length === 0;
+
+  if (isLoading) {
+    return (
+      <div className="bg-red-100 p-4 rounded-md">
+        <p className="mb-4 text-center uppercase text-red-400 font-bold text-[20px]">
+          not working now !
+        </p>
+        <div className="flex justify-end mb-3">
+          <select className="px-2 py-1 rounded-md" onChange={handleChange}>
+            <option>전체</option>
+            <option>연차</option>
+            <option>반차</option>
+            <option>미기입</option>
+          </select>
+        </div>
+        <ul className="grid grid-cols-4 gap-4">
+          {EMPLOYEE_SKELETON_ARRAY.map((i) => (
+            <SkeletonEmployeeCard key={i} />
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
