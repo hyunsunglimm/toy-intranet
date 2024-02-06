@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
 import { deleteEmployee } from "../sanity/employee";
 import { introduction } from "../data/Introduction";
+import { FaArrowCircleLeft } from "react-icons/fa";
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
@@ -41,7 +42,7 @@ export default function EmployeePage() {
     <section className="flex items-center h-[900px] ring-1 text-white rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[15%] mb-[10%]">
       <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
         <img
-          className="h-[10vw] w-[10vw] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
+          className="h-[10vw] w-[10vw] bg-[#2A3D53] border-[3px] border-solid ring-2  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
           src={employee.image}
           alt={`${employee.name}님의 프로필`}
         />
