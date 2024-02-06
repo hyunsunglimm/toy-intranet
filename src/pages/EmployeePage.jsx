@@ -3,7 +3,6 @@ import { DataContext } from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
 import { deleteEmployee } from "../sanity/employee";
-
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
@@ -29,23 +28,37 @@ export default function EmployeePage() {
   }
 
   return (
-    <section className="py-8">
-      <div className="flex">
-        <div className="basis-1/2 flex flex-col items-center gap-8">
+    <div
+      className="h-screen flex flex-col justify-center items-center"
+      style={{
+        backgroundImage: `url(/employeebg.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <section className="text-white w-[80%] rounded-lg py-8 backdrop-blur-md backdrop-sepia-0 bg-white/10 relative">
+        <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
           <img
-            className="h-[600px] object-cover rounded-[20px]"
+            className="mb-[100px] h-[200px] w-[200px] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute"
             src={employee.image}
             alt={`${employee.name}님의 프로필`}
           />
-          <p className="text-center font-bold text-[24px] uppercase">
-            {employee.department}
-          </p>
-        </div>
-        <div className="basis-1/2 p-12 uppercase flex flex-col gap-8 text-[20px] justify-center">
-          <p>name: {employee.name}</p>
-          <p>email: {employee.email}</p>
-          <p>age: {employee.age}</p>
-          <p>working hours: {employee.workingHours}</p>
+          <div className="mt-[90px] flex flex-col gap-3 items-center">
+            <p>{employee.name}</p>
+            <p>age: {employee.age}</p>
+            <p className="text-center font-semibold text-[24px] uppercase">
+              {employee.department}
+            </p>
+            <p className="mt-16 w-2/3">
+              "동적이고 사용자 친화적인 웹 애플리케이션을 만드는 프론트엔드
+              개발자로, 웹 기술에 열정을 가지고 있습니다."
+            </p>
+          </div>
+
+          <div className="p-12 font-semibold flex gap-8 text-[20px] justify-center">
+            <p className="boder-l">working hours: {employee.workingHours}</p>
+            <p className="font-semibold">{employee.email}</p>
+          </div>
           <button
             onClick={deleteHandler}
             className="bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
@@ -53,7 +66,7 @@ export default function EmployeePage() {
             delete
           </button>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
