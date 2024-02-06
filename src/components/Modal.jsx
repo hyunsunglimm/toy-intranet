@@ -22,7 +22,7 @@ const Modal = forwardRef(function Modal({ children }, ref) {
     <dialog
       onClick={closeModal}
       // className="backdrop:bg-stone-900/90 bg-white border-[1px] border-slate-400/30 rounded-lg p-8 text-slate-500"
-      className="backdrop:backdrop-blur-sm bg-white/20 border-[1px] border-slate-400/30 rounded-lg p-8 text-slate-300"
+      className="backdrop:backdrop-blur-sm bg-white/50 border-[2px] border-white rounded-lg p-8 text-black"
       ref={dialog}
     >
       {children}

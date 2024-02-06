@@ -63,9 +63,9 @@ export default function Header() {
             <div className="flex items-center gap-4 text-slate-300 hover:text-slate-500 transition cursor-pointer ml-4">
               <p className="text-lg">{loginUser?.name}</p>
               <img
-                className="w-[50px] h-[50px] object-cover rounded-full"
+                className="w-[50px] h-[50px] object-cover rounded-full bg-white/30"
                 src={loginUser?.image}
-                alt="demo-icon"
+                alt={`${loginUser.name}님의 프로필`}
               />
             </div>
             <div
