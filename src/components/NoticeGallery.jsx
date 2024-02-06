@@ -23,15 +23,11 @@ export default function NoticeGallery() {
         notice gallery
       </p>
       {/* slick 라이브러리 로직 */}
-      <div className="slider-container">
-      <Slider {...settings}>
+      <Slider {...settings} className="mx-[-8px]">
         {notices.map((notice) => (
-          <div key={notice.id}>
-          <NoticeCard notice={notice} />
-          </div>
+          <NoticeCard key={notice.id} notice={notice} />
         ))}
-        </Slider>
-      </div>
+      </Slider>
     </div>
   );
 }
