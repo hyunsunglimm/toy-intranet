@@ -3,17 +3,27 @@ import { DataContext } from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
 import { deleteEmployee } from "../sanity/employee";
+import { introduction } from "../data/Introduction";
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
   const params = useParams();
   const navigater = useNavigate();
   const employee = employees.find((employee) => employee.id === params.id);
-
   const auth = getAuth();
   const user = auth.currentUser;
 
   if (!employee) {
     return <p>loading...</p>;
+  }
+
+  function employeeIntroduction() {
+    if (employee.department === "developer") {
+      return introduction.developer;
+    } else if (employee.department === "designer") {
+      return introduction.designer;
+    } else if (employee.department === "planner") {
+      return introduction.planner;
+    }
   }
 
   function deleteHandler() {
@@ -28,35 +38,43 @@ export default function EmployeePage() {
   }
 
   return (
-    <section className="text-white rounded-lg py-8 backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[120px]">
+    <section className="flex items-center h-[900px] ring-1 text-white rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[15%] mb-[10%]">
       <div className="flex flex-col items-center gap-8 text-center font-bold text-[24px] uppercase">
         <img
-          className="mb-[100px] h-[200px] w-[200px] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
+          className="h-[10vw] w-[10vw] bg-white border-[3px] border-solid border-white  rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
           src={employee.image}
           alt={`${employee.name}님의 프로필`}
         />
-        <div className="mt-[90px] flex flex-col gap-3 items-center">
-          <p>{employee.name}</p>
-          <p>age: {employee.age}</p>
-          <p className="text-center font-semibold text-[24px] uppercase">
-            {employee.department}
-          </p>
-          <p className="mt-16 w-2/3">
-            {`"동적이고 사용자 친화적인 웹 애플리케이션을 만드는 프론트엔드
-            개발자로, 웹 기술에 열정을 가지고 있습니다."`}
-          </p>
-        </div>
+        <div className="p-8 w-2/3 absolute top-[150px] left-[50%]  transform -translate-x-1/2">
+          <div className="flex flex-col items-center">
+            <p>{employee.name}</p>
+            <p>age : {employee.age}</p>
+            <p className="font-semibold text-[24px] uppercase">
+              {employee.department}
+            </p>
+            <p className="mt-16">{employeeIntroduction()}</p>
+          </div>
+          <div className="p-12 w-full font-semibold flex text-[20px] justify-center">
+            <div className="w-1/2 border-r-[1px] border-white-500 p-8">
+              <p>
+                Working hours :<br />
+                {employee.workingHours}
+              </p>
+            </div>
 
-        <div className="p-12 font-semibold flex gap-8 text-[20px] justify-center">
-          <p className="boder-l">working hours: {employee.workingHours}</p>
-          <p className="font-semibold">{employee.email}</p>
+            <div className="w-1/2 border-l-[1px] border-white-500 p-8">
+              <p className="lowercase"> {employee.email}</p>
+            </div>
+          </div>
+          {employee?.id === loginUser?.id && (
+            <button
+              onClick={deleteHandler}
+              className="m-10 bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
+            >
+              delete
+            </button>
+          )}
         </div>
-        <button
-          onClick={deleteHandler}
-          className="bg-red-300 text-white p-2 hover:bg-red-400 transition rounded-lg"
-        >
-          delete
-        </button>
       </div>
     </section>
   );
