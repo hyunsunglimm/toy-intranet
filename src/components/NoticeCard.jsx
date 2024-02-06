@@ -4,7 +4,7 @@ export default function NoticeCard({ notice }) {
   const { title, thumbnail, id } = notice;
 
   return (
-    <div className="bg-white rounded-md overflow-hidden group cursor-pointer mx-2 ">
+    <div className="bg-white rounded-md overflow-hidden group cursor-pointer mx-2">
       <Link to={`/notice/${id}`}>
         <div className="overflow-hidden">
           <img

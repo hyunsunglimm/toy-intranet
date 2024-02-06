@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import EmployeeCard from "./EmployeeCard";
+import SkeletonEmployeeCard from "./skeleton/SkeletonEmployeeCard";
+import { EMPLOYEE_SKELETON_ARRAY } from "../data/skeleton";
 
 export default function WorkingEmployees() {
   const { employees } = useContext(DataContext);
 
-  if (!employees) {
-    return <div>Loading...</div>;
-  }
+  const isLoading = employees.length === 0;
 
-  const itemsPerPage = 4; // 한 페이지에 보여질 항목 수
+  const itemsPerPage = 8; // 한 페이지에 보여질 항목 수
   const [currentPage, setCurrentPage] = useState(1);
 
   const workingEmployees = employees.filter(
@@ -25,6 +25,20 @@ export default function WorkingEmployees() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = workingEmployees.slice(indexOfFirstItem, indexOfLastItem);
+  if (isLoading) {
+    return (
+      <div className="bg-blue-100 p-4 rounded-md">
+        <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+          working now !
+        </p>
+        <ul className="grid grid-cols-4 gap-4">
+          {EMPLOYEE_SKELETON_ARRAY.map((i) => (
+            <SkeletonEmployeeCard key={i} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-blue-100 p-4 rounded-md">
