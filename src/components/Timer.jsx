@@ -17,9 +17,7 @@ export default function Timer({ openModal, ...props }) {
   // const seconds = currentDateTime.getSeconds();
   const ampm = hours >= 12 ? "오후" : "오전";
   const formattedHours = hours % 12 || 12;
-  const formattedDateTime = `${year}년 ${
-    currentDateTime.getMonth() + 1
-  }월 ${currentDateTime.getDate()}일 ${ampm} ${formattedHours}시 ${minutes}분`;
+  const formattedDateTime = `${hours}: ${minutes}`;
 
   return (
     <p onClick={openModal} {...props}>
