@@ -14,7 +14,6 @@ export default function NoticeGallery() {
   const isLoading = notices.length === 0;
 
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -23,8 +22,8 @@ export default function NoticeGallery() {
 
   if (isLoading) {
     return (
-      <div className="bg-blue-100 p-4 rounded-md">
-        <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+      <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+        <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           notice gallery
         </p>
         <div className="grid grid-cols-4 gap-4">
@@ -37,8 +36,8 @@ export default function NoticeGallery() {
   }
 
   return (
-    <div className="bg-blue-100 p-4 rounded-md">
-      <p className="mb-4 text-center uppercase text-blue-400 font-bold text-[20px]">
+    <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
         notice gallery
       </p>
       {/* slick 라이브러리 로직 */}
