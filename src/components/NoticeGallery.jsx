@@ -22,7 +22,7 @@ export default function NoticeGallery() {
 
   if (isLoading) {
     return (
-      <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
+      <div className="p-4 rounded-md bg-white/10">
         <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           notice gallery
         </p>
@@ -36,8 +36,8 @@ export default function NoticeGallery() {
   }
 
   return (
-    <div className="p-4 rounded-md backdrop-blur-md backdrop-sepia-0 bg-white/10">
-      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
+    <div className="p-4 rounded-md bg-white/10">
+      <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
         notice gallery
       </p>
       {/* slick 라이브러리 로직 */}
