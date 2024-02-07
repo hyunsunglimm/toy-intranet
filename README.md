@@ -1,3 +1,4 @@
+
 Toy Project
 # **📅 직원들을 위한 인트라넷 페이지**
 
@@ -8,12 +9,6 @@ https://toy-intranet.vercel.app/
 INTRANET FIVE
 ![프로젝트 로고](로고_경로)
 
-
-### 기술 스택
-
-- 프로젝트에 사용된 기술, 프레임워크, 라이브러리를 나열합니다.
-
-```markdown
 ## 기술 스택
 
 - React
