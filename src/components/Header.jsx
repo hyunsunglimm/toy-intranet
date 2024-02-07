@@ -9,6 +9,7 @@ import Toggle from "./Toggle";
 import { buttonStyle } from "../style/button";
 import symbol from "/symbol.png";
 
+
 export default function Header() {
   const { loginUser } = useContext(DataContext);
 
@@ -17,6 +18,14 @@ export default function Header() {
   const navigate = useNavigate();
 
   const modalRef = useRef();
+
+  //로고 눌렀을 때 메인페이지의 최상단으로 스크롤
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   function openModal() {
     modalRef.current.open();
@@ -40,7 +49,8 @@ export default function Header() {
   return (
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
-        to="/"
+        to="/" 
+        onClick={scrollToTop} //로고 최상단으로 스크롤 함수
         className="flex items-center font-bold text-[24px] uppercase text-slate-300 hover:text-slate-500 transition"
       >
         <img
@@ -54,7 +64,7 @@ export default function Header() {
         <div className="flex justify-end items-center">
           <Timer
             openModal={openModal}
-            className="text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg"
+            className="text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
           />
           <div
             className="ml-8"
@@ -104,7 +114,14 @@ export default function Header() {
             alt={`${loginUser?.name}의 프로필사진`}
             className="w-[200px] h-[200px] object-cover rounded-lg"
           />
-          <Timer />
+          <div className="w-full flex justify-between">
+            <p>현재시간</p>
+            <Timer />
+          </div>
+          <div className="w-full flex justify-between">
+            <p>근무시간</p>
+            <p>{loginUser?.workingHours}</p>
+          </div>
           <p>
             {loginUser?.name}님은 현재{" "}
             {loginUser?.isWorking ? "근무중" : "부재중"}
