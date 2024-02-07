@@ -76,7 +76,7 @@ export default function AbsenceEmployees() {
         </p>
         <div className="flex justify-end mb-3">
           <select
-            className="p-2 rounded-md bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 cursor-pointer text-slate-300"
+            className="p-2 rounded-md bg-white/10 border-[1px] border-slate-400/30 md:hover:bg-white/20 cursor-pointer text-slate-300"
             onChange={handleChange}
           >
             <option>전체</option>
@@ -102,7 +102,7 @@ export default function AbsenceEmployees() {
       </p>
       <div className="flex justify-end mb-3">
         <select
-          className="p-2 rounded-md bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 cursor-pointer text-slate-300"
+          className="p-2 rounded-md bg-white/10 border-[1px] border-slate-400/30 md:hover:bg-white/20 cursor-pointer text-slate-300"
           onChange={handleChange}
         >
           <option>전체</option>

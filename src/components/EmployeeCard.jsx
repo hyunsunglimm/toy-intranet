@@ -16,7 +16,7 @@ export default function EmployeeCard({ employee }) {
   const isReason = isWorking || reasonForAbsence;
 
   return (
-    <li className="rounded-md h-[230px] md:h-[342px] bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 relative transition">
+    <li className="rounded-md h-[230px] md:h-[342px] bg-white/10 border-[1px] border-slate-400/30 md:hover:bg-white/20 relative transition">
       <Link
         to={`/employee/${id}`}
         className="flex flex-col h-full justify-center"

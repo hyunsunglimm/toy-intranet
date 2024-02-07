@@ -93,7 +93,7 @@ export default function EmployeePage() {
           )}
           <label htmlFor="userImage-update">
             <img
-              className={`h-[140px] w-[140px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-70px] left-1/2 translate-x-[-50%] ${
+              className={`h-[100px] w-[100px] md:h-[140px] md:w-[140px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-50px] md:top-[-70px] left-1/2 translate-x-[-50%] ${
                 isCurrentEmployee && "cursor-pointer"
               }`}
               src={employee.image}
@@ -112,15 +112,17 @@ export default function EmployeePage() {
               <p className="uppercase font-bold text-lg">{employee.name}</p>
               <p>{employee.age}</p>
             </div>
-            <div className="bg-white/10 rounded-md border-[1px] border-slate-400/30 p-4 mt-8 text-center">
-              <p className="uppercase mb-4">{employee.department}</p>
-              <p>{employeeIntroduction()}</p>
+            <div className="bg-white/10 rounded-md border-[1px] border-slate-400/30 p-4 mt-2 md:mt-8 text-center">
+              <p className="uppercase mb-2 md:mb-4">{employee.department}</p>
+              <p className="text-[12px] md:text-[16px]">
+                {employeeIntroduction()}
+              </p>
             </div>
             {!employee.isWorking && (
               <select
                 defaultValue={employee.reasonForAbsence}
                 onChange={handleChange}
-                className="p-2 w-full text-center rounded-md bg-white/10 border-[1px] border-slate-400/30 mt-8 cursor-pointer hover:bg-white/20"
+                className="p-2 w-full text-center rounded-md bg-white/10 border-[1px] border-slate-400/30 mt-2 md:mt-8 cursor-pointer md:hover:bg-white/20"
                 disabled={!isCurrentEmployee}
               >
                 <option className="hidden">부재사유가 없습니다.</option>
@@ -129,14 +131,14 @@ export default function EmployeePage() {
                 <option>반차</option>
               </select>
             )}
-            <div className="flex flex-col gap-4 sm:flex-row text-center items-center mt-8">
-              <div className="w-full uppercase">
+            <div className="flex flex-col md:gap-4 sm:flex-row text-center items-center mt-2 md:mt-8">
+              <div className="w-full uppercase text-[14px] md:text-[16px]">
                 working hours : {employee.workingHours}
               </div>
               <div className="hidden sm:block w-[1px] h-12 border-[1px] border-slate-400/30"></div>
               <p className="w-full">{employee.email}</p>
             </div>
-            <div className="flex justify-end mt-8">
+            <div className="flex justify-end mt-2 md:mt-8">
               {isCurrentEmployee && (
                 <button className={deleteButtonStyle} onClick={handleOpenModal}>
                   직원 탈퇴
@@ -157,13 +159,13 @@ export default function EmployeePage() {
           <p className="text-red-400">정말 삭제하시겠습니까 ?</p>
           <div className="w-full bg-white/30 border-[1px] border-slate-400/30 flex rounded-md">
             <button
-              className="w-full p-2 border-r-[1px] border-slate-400/30 hover:bg-white/20 rounded-l-md"
+              className="w-full p-2 border-r-[1px] border-slate-400/30 md:hover:bg-white/20 rounded-l-md"
               onClick={deleteHandler}
             >
               YES
             </button>
             <button
-              className="w-full p-2 hover:bg-white/20 rounded-r-md"
+              className="w-full p-2 md:hover:bg-white/20 rounded-r-md"
               onClick={() => modalRef.current.close()}
             >
               NO
