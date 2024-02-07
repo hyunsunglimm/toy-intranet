@@ -62,7 +62,7 @@ export default function AbsenceEmployees() {
   if (isLoading) {
     return (
       <div className="p-4 rounded-md bg-white/10">
-        <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
+        <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
           not working now !
         </p>
         <div className="flex justify-end mb-3">
@@ -88,12 +88,12 @@ export default function AbsenceEmployees() {
 
   return (
     <div className="p-4 rounded-md bg-white/10">
-      <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
+      <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
         not working now !
       </p>
       <div className="flex justify-end mb-3">
         <select
-          className="p-2 rounded-md bg-slate-800 text-slate-300"
+          className="p-2 rounded-md bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 cursor-pointer text-slate-300"
           onChange={handleChange}
         >
           <option>전체</option>
@@ -114,8 +114,10 @@ export default function AbsenceEmployees() {
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={`mx-1 px-3 py-1 rounded-md ${
-              currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'
+            className={`mx-1 px-3 py-1 rounded-md bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 cursor-pointer text-slate-300 ${
+              currentPage === index + 1 
+                ? 'bg-white/20' 
+                : 'bg-white/10'
             }`}
           >
             {index + 1}
