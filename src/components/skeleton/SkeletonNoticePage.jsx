@@ -3,7 +3,7 @@ export default function SkeletonNoticePage() {
     <div className="py-8">
       <div className="bg-white/10 rounded-lg overflow-hidden relative">
         {/* 이미지를 위한 스켈레톤 */}
-        <div className="w-full h-[500px] bg-gray-300 animate-pulse rounded-md"></div>
+        <div className="w-full h-[500px] bg-gray-300 animate-pulse"></div>
 
         <div className="p-8">
           {/* 제목을 위한 스켈레톤 */}
