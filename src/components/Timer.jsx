@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LuClock3 } from "react-icons/lu";
 
 export default function Timer({ openModal, ...props }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -25,7 +26,11 @@ export default function Timer({ openModal, ...props }) {
   const formattedDateTime = `${formattedHours}:${formattedMinutes}`;
 
   return (
-    <p onClick={openModal} {...props}>
+    <p
+      onClick={openModal} {...props}
+      style={{display: 'flex', alignItems: 'center', gap: '.5rem'}}
+    >
+      <LuClock3/>
       {formattedDateTime} {dayOfWeek}
     </p>
   );
