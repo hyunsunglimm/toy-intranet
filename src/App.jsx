@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NoticePage from "./pages/NoticePage";
 import EmployeePage from "./pages/EmployeePage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/employee/:id" element={<EmployeePage />} />
         </Routes>
       </div>
+      <Footer />
     </DataContextProvider>
   );
 }
