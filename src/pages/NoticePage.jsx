@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useParams } from "react-router";
 import { DataContext } from "../context/DataContext";
+import SkeletonNoticePage from "../components/skeleton/\bSkeletonNoticePage";
 
 export default function NoticePage() {
   const { id } = useParams();
@@ -8,7 +9,7 @@ export default function NoticePage() {
   const notice = notices.find((notice) => notice.id === id);
 
   if (!notice) {
-    return <div>Loading...</div>;
+    return <SkeletonNoticePage />;
   }
   const { title, description, thumbnail, createdAt, updatedAt } = notice;
 
@@ -30,7 +31,7 @@ export default function NoticePage() {
 
   return (
     <div className="py-8">
-      <div className="bg-white rounded-lg overflow-hidden">
+      <div className="bg-white/10 rounded-lg overflow-hidden">
         <img
           className="w-full h-[500px] object-cover"
           src={thumbnail}
