@@ -113,10 +113,16 @@ export default function AbsenceEmployees() {
         </select>
       </div>
       <ul className="grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
-        {currentEmployees.map((employee) => (
-          <EmployeeCard key={employee.id} employee={employee} />
-        ))}
+        {currentEmployees.length > 0 &&
+          currentEmployees.map((employee) => (
+            <EmployeeCard key={employee.id} employee={employee} />
+          ))}
       </ul>
+      {currentEmployees.length === 0 && (
+        <div className="h-[510px] md:h-[696px] w-full flex justify-center items-center text-[16px] md:text-[24px] font-bold text-slate-300/50">
+          선택하신 사유에 해당하는 직원이 없습니다.
+        </div>
+      )}
       {/* 페이지네이션 컴포넌트 */}
       <div className="flex justify-center mt-4 absolute bottom-4 left-1/2 translate-x-[-50%]">
         {Array.from({
@@ -126,9 +132,7 @@ export default function AbsenceEmployees() {
             key={index}
             onClick={() => handlePageChange(index + 1)}
             className={`mx-1 px-3 py-1 rounded-md bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 cursor-pointer text-slate-300 ${
-              currentPage === index + 1 
-                ? 'bg-white/20' 
-                : 'bg-white/10'
+              currentPage === index + 1 ? "bg-white/20" : "bg-white/10"
             }`}
           >
             {index + 1}
