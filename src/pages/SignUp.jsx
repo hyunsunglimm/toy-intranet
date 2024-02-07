@@ -116,10 +116,10 @@ export default function SignUp() {
 
   return (
     <div
-      style={{ height: contentHeight }}
-      className="flex justify-center items-center"
+      style={{ height: innerWidth > 768 && contentHeight }}
+      className="flex justify-center items-center py-8 md:py-0"
     >
-      <div className="bg-white/10 rounded-lg w-[600px] p-8 h-min">
+      <div className="bg-white/10 rounded-lg w-full sm:w-[600px] p-8 h-min">
         <p className="text-center text-[20px] font-bold mb-4 text-slate-300">
           직원 등록
         </p>
@@ -157,7 +157,7 @@ export default function SignUp() {
           </div>
           <div>
             <p className="mb-2 text-slate-300">WorkingHours</p>
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-2 sm:gap-0">
               <TimePicker
                 label="Start"
                 timeChangeHandler={timeChangeHandler}

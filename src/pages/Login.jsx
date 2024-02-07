@@ -72,7 +72,7 @@ export default function Login() {
           message={errorMessage.passwordMessage}
         />
         <Link
-          className="text-center text-sm text-slate-300 hover:underline"
+          className="text-center text-sm text-slate-300 md:hover:underline"
           to="/signup"
         >
           아직 직원등록을 안하셨나요 ?

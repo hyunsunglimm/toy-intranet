@@ -13,7 +13,7 @@ function App() {
   return (
     <DataContextProvider>
       <Header />
-      <div className="w-[1200px] mx-auto">
+      <div className="w-11/12 max-w-[1200px] mx-auto">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
@@ -28,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+// test
