@@ -1,24 +1,31 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import EmployeeCard from "./EmployeeCard";
 import { EMPLOYEE_SKELETON_ARRAY } from "../data/skeleton";
 import SkeletonEmployeeCard from "./skeleton/SkeletonEmployeeCard";
 
 export default function AbsenceEmployees() {
-  const [reason, setReason] = useState("전체");
-  const [currentPage, setCurrentPage] = useState(1);
   const { employees } = useContext(DataContext);
 
-  if (!employees) {
-    return <div>Loading...</div>;
-  }
+  const [reason, setReason] = useState("전체");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  {
-    /* 만약 employees가 없으면 로딩 중임을 나타내는 화면을 반환 */
-  }
   const absenceEmployees = employees.filter(
     (employee) => employee.isWorking === false
   );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function getFilteredEmployees() {
     switch (reason) {
@@ -36,7 +43,7 @@ export default function AbsenceEmployees() {
   }
 
   // 페이지당 표시할 항목 수
-  const itemsPerPage = window.innerWidth > 1024 ? 8 : 6;
+  const itemsPerPage = windowWidth > 1024 ? 8 : 6;
 
   // 전체 필터된 직원 목록
   const filteredEmployees = getFilteredEmployees();
