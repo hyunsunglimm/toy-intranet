@@ -88,7 +88,7 @@ export default function EmployeePage() {
           )}
           <label htmlFor="userImage-update">
             <img
-              className={`h-[200px] w-[200px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-100px] left-1/2 translate-x-[-50%] ${
+              className={`h-[140px] w-[140px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-70px] left-1/2 translate-x-[-50%] ${
                 isCurrentEmployee && "cursor-pointer"
               }`}
               src={employee.image}
@@ -102,7 +102,7 @@ export default function EmployeePage() {
           >
             {employee.isWorking ? "근무중" : "부재중"}
           </div>
-          <div className="mt-[100px]">
+          <div className="mt-[50px]">
             <div className="text-center">
               <p className="uppercase font-bold text-lg">{employee.name}</p>
               <p>{employee.age}</p>
