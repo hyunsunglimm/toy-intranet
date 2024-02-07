@@ -44,7 +44,7 @@ export default function WorkingEmployees() {
   }
 
   return (
-    <div className="p-4 rounded-md bg-white/10">
+    <div className="p-4 rounded-md bg-white/10 h-[826px] relative">
       <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
         working now !
       </p>
@@ -55,7 +55,7 @@ export default function WorkingEmployees() {
       </ul>
 
       {/* 페이지네이션 UI */}
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 absolute bottom-4 left-1/2 translate-x-[-50%]">
         {Array.from(
           { length: Math.ceil(workingEmployees.length / itemsPerPage) },
           (_, index) => (

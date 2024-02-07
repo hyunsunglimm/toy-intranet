@@ -2,12 +2,10 @@ import { useContext, useRef } from "react";
 import { DataContext } from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
-import { deleteEmployee } from "../sanity/employee";
+import { deleteEmployee, updateEmployee } from "../sanity/employee";
 import { introduction } from "../data/Introduction";
 import { deleteButtonStyle } from "../style/button";
 import Modal from "../components/Modal";
-import Timer from "../components/Timer";
-import { FaPencil } from "react-icons/fa6";
 
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
@@ -18,11 +16,13 @@ export default function EmployeePage() {
   const user = auth.currentUser;
   const modalRef = useRef();
 
+  const isCurrentEmployee = loginUser?.id === params.id;
+
   const handleOpenModal = () => {
     modalRef.current.open(); // 모달 열기
   };
 
-  // const contentHeight = `${window.innerHeight - 500}px`;
+  const contentHeight = `${window.innerHeight - 80}px`;
 
   if (!employee) {
     return <p>loading...</p>;
@@ -38,6 +38,10 @@ export default function EmployeePage() {
     }
   }
 
+  function handleChange(e) {
+    updateEmployee(employee.id, "reasonForAbsence", e.target.value);
+  }
+
   function deleteHandler() {
     deleteUser(user)
       .then(() => {
@@ -50,79 +54,85 @@ export default function EmployeePage() {
   }
 
   return (
-    <div className="p-8 flex items-center justify-center">
+    <>
       <div
-        // style={{ height: contentHeight }}
-        className="w-[650px] h-[800px] ring-1 ring-slate-400/30 text-white rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 relative mt-[15%]"
+        className="flex items-center justify-center text-slate-300"
+        style={{ height: contentHeight }}
       >
-        <div className="flex flex-col items-center w-[600px] gap-8 text-center font-bold text-[24px] uppercase">
+        <div className="w-[600px] bg-white/10 rounded-md border-[1px] border-slate-400/30 p-8 relative">
           <img
-            className="h-[200px] w-[200px] bg-white ring-2 ring-slate-400/30 rounded-full top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 absolute object-cover"
+            className="h-[200px] w-[200px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-100px] left-1/2 translate-x-[-50%]"
             src={employee.image}
             alt={`${employee.name}님의 프로필`}
           />
-          <button className="absolute right-0 p-8 text-[28px]">
-            <FaPencil />
-          </button>
-
-          <div className="w-full absolute top-[120px] left-[50%]  transform -translate-x-1/2">
-            <div className="flex flex-col items-center">
-              <p>{employee.name}</p>
-              <p className="text-[18px]">{employee.age}</p>
-              <div className="rounded-lg backdrop-blur-md backdrop-sepia-0 bg-white/10 p-8 m-8">
-                <p className="font-semibold text-[24px] uppercase mb-8">
-                  {employee.department}
-                </p>
-                <p className="text-[22px]">{employeeIntroduction()}</p>
-              </div>
-            </div>
-            <div className="w-full font-semibold flex text-[20px] justify-center reletive">
-              <div className="w-1/2 border-r-[1px] border-slate-300 p-8">
-                <p>
-                  Working hours :<br />
-                  {employee.workingHours}
-                </p>
-              </div>
-              <div className="w-1/2 border-l-[1px] border-slate-300 p-8">
-                <p className="lowercase"> {employee.email}</p>
-              </div>
-            </div>
+          <div
+            className={`absolute top-8 right-8 ${
+              employee.isWorking ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {employee.isWorking ? "근무중" : "부재중"}
           </div>
-          {employee?.id === loginUser?.id && (
-            <button onClick={handleOpenModal} className={deleteButtonStyle}>
-              회원 탈퇴
-            </button>
-          )}
-          <Modal ref={modalRef}>
-            <div className="flex flex-col items-center gap-4">
-              <p className="text-[20px] font-bold uppercase">
-                {loginUser?.department}
-              </p>
-              <img
-                src={loginUser?.image}
-                alt={`${loginUser?.name}의 프로필사진`}
-                className="w-[200px] h-[200px] object-cover rounded-lg"
-              />
-              <Timer />
-              <p>회원 탈퇴 하시겠습니까?</p>
-              {employee?.id === loginUser?.id && (
-                <button
-                  onClick={deleteHandler}
-                  className={deleteButtonStyle}
-                  style={{
-                    fontWeight: "bold",
-                    position: "sticky",
-                    color: "#ef4444",
-                    borderColor: "#ef4444",
-                  }}
-                >
-                  회원 탈퇴
+          <div className="mt-[100px]">
+            <div className="text-center">
+              <p className="uppercase font-bold text-lg">{employee.name}</p>
+              <p>{employee.age}</p>
+            </div>
+            <div className="bg-white/10 rounded-md border-[1px] border-slate-400/30 p-4 mt-8 text-center">
+              <p className="uppercase mb-4">{employee.department}</p>
+              <p>{employeeIntroduction()}</p>
+            </div>
+            {!employee.isWorking && (
+              <select
+                defaultValue={employee.reasonForAbsence}
+                onChange={handleChange}
+                className="p-2 w-full text-center rounded-md bg-white/10 border-[1px] border-slate-400/30 mt-8 cursor-pointer hover:bg-white/20"
+              >
+                <option className="hidden">부재사유가 없습니다.</option>
+                <option>비근무시간</option>
+                <option>연차</option>
+                <option>반차</option>
+              </select>
+            )}
+            <div className="flex text-center items-center mt-8">
+              <p className="w-full">working hours : {employee.workingHours}</p>
+              <div className="w-[1px] h-12 border-[1px] border-slate-400/30"></div>
+              <p className="w-full">{employee.email}</p>
+            </div>
+            <div className="flex justify-end mt-8">
+              {isCurrentEmployee && (
+                <button className={deleteButtonStyle} onClick={handleOpenModal}>
+                  직원 탈퇴
                 </button>
               )}
             </div>
-          </Modal>
+          </div>
         </div>
       </div>
-    </div>
+      <Modal ref={modalRef}>
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-[20px] font-bold uppercase">{loginUser?.name}</p>
+          <img
+            src={loginUser?.image}
+            alt={`${loginUser?.name}의 프로필사진`}
+            className="w-[200px] h-[200px] object-cover rounded-lg"
+          />
+          <p className="text-red-400">정말 삭제하시겠습니까 ?</p>
+          <div className="w-full bg-white/30 border-[1px] border-slate-400/30 flex rounded-md">
+            <button
+              className="w-full p-2 border-r-[1px] border-slate-400/30 hover:bg-white/20 rounded-l-md"
+              onClick={deleteHandler}
+            >
+              YES
+            </button>
+            <button
+              className="w-full p-2 hover:bg-white/20 rounded-r-md"
+              onClick={() => modalRef.current.close()}
+            >
+              NO
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }

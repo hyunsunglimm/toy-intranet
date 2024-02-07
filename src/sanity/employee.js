@@ -37,11 +37,19 @@ export async function addEmployee({
 }
 
 export async function updateEmployee(id, key, value) {
-  return client
-    .patch(id)
-    .set({ [key]: value })
-    .commit()
-    .catch((error) => console.log(error));
+  if (key === "isWorking" && value === true) {
+    return client
+      .patch(id)
+      .set({ isWorking: true, reasonForAbsence: "" })
+      .commit()
+      .catch((error) => console.log(error));
+  } else {
+    return client
+      .patch(id)
+      .set({ [key]: value })
+      .commit()
+      .catch((error) => console.log(error));
+  }
 }
 
 export async function deleteEmployee(id) {
