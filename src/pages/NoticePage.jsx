@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useParams } from "react-router";
 import { DataContext } from "../context/DataContext";
-import SkeletonNoticePage from "../components/skeleton/\bSkeletonNoticePage";
+import SkeletonNoticePage from "../components/skeleton/SkeletonNoticePage";
 
 export default function NoticePage() {
   const { id } = useParams();
