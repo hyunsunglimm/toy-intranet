@@ -21,9 +21,15 @@ export default function Timer({ openModal, ...props }) {
   const minutes = currentDateTime.getMinutes();
   // const seconds = currentDateTime.getSeconds();
   // const ampm = hours >= 12 ? "오후" : "오전";
+<<<<<<< HEAD
+  const formattedHours = String(hours % 12 || 12).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');    //padStart를 이용해서 두자리로 만들고 나머지 빈칸에 0을 집어넣게 해줌
+  const formattedDateTime = `${hours}:${formattedMinutes}`;
+=======
   const formattedHours = String(hours % 12 || 12).padStart(2, "0");
   const formattedMinutes = String(minutes).padStart(2, "0"); //padStart를 이용해서 두자리로 만들고 나머지 빈칸에 0을 집어넣게 해줌
   const formattedDateTime = `${formattedHours}:${formattedMinutes}`;
+>>>>>>> a94219b340cdcd133bcdf11c359aa838bab9177d
 
   return (
     <p
