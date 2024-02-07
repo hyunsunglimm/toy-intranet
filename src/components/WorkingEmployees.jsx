@@ -24,7 +24,10 @@ export default function WorkingEmployees() {
   // 현재 페이지에 표시할 항목 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = workingEmployees.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = workingEmployees.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
   if (isLoading) {
     return (
       <div className="p-4 rounded-md bg-white/10">
@@ -53,15 +56,22 @@ export default function WorkingEmployees() {
 
       {/* 페이지네이션 UI */}
       <div className="flex justify-center mt-4">
-        {Array.from({ length: Math.ceil(workingEmployees.length / itemsPerPage) }, (_, index) => (
-          <button
-            key={index + 1}
-            className={`mx-1 px-3 py-1 rounded-md ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {Array.from(
+          { length: Math.ceil(workingEmployees.length / itemsPerPage) },
+          (_, index) => (
+            <button
+              key={index + 1}
+              className={`mx-1 px-3 py-1 rounded-md ${
+                currentPage === index + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 text-gray-700"
+              }`}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
       </div>
     </div>
   );

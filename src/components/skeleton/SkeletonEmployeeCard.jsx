@@ -1,15 +1,14 @@
 export default function SkeletonEmployeeCard() {
   return (
-    <li className="flex flex-col p-4 rounded-md bg-white overflow-hidden">
-      <div className="animate-pulse">
-        <div className="w-[100px] h-[100px] rounded-full object-cover mx-auto mt-4 bg-gray-100 dark:bg-gray-400"></div>
-        <div className="w-full mx-auto mt-4 flex flex-col gap-2 items-center">
-          <div className="w-24 h-6 block bg-gray-100 dark:bg-gray-400 rounded-md mt-[2px]"></div>
-          <div className="w-36 h-5 block bg-gray-100 dark:bg-gray-400 rounded-md"></div>
-          <div className="w-8 h-5 block bg-gray-100 dark:bg-gray-400 rounded-md"></div>
-          <div className="w-20 h-5 block bg-gray-100 dark:bg-gray-400 rounded-md"></div>
-          <div className="w-20 h-5 block bg-gray-100 dark:bg-gray-400 rounded-md"></div>
-          <div className="w-full h-8 block bg-gray-100 dark:bg-gray-400 rounded-md"></div>
+    <li className="rounded-md h-[342px] bg-white/10 border-[1px] border-slate-400/30 hover:bg-white/20 relative transition">
+      <div className="animate-pulse flex flex-col h-full justify-center">
+        <div className="w-[100px] h-[100px] rounded-full object-cover mx-auto bg-gray-400" />
+        <div className="w-full mx-auto mt-4 flex flex-col items-center gap-3">
+          <div className="bg-gray-400 w-[110px] h-[24px] rounded-md"></div>
+          <div className="bg-gray-400 w-[200px] h-[21px] rounded-md"></div>
+          <div className="bg-gray-400 w-[50px] h-[21px] rounded-md"></div>
+          <div className="bg-gray-400 w-[80px] h-[21px] rounded-md"></div>
+          <div className="bg-gray-400 w-[100px] h-[21px] rounded-md"></div>
         </div>
       </div>
     </li>
