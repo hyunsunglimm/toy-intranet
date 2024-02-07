@@ -37,16 +37,6 @@ export default function Header() {
     updateEmployee(loginUser.id, "isWorking", !loginUser.isWorking);
   };
 
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   return (
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
@@ -64,22 +54,8 @@ export default function Header() {
         <div className="flex justify-end items-center">
           <Timer
             openModal={openModal}
-            className="text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg"
+            className="text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
           />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 50 50"
-            width="30px"
-            height="30px"
-            style={{
-              marginLeft: "10px",
-              fill: isHovered ? "#cbd5e1" : "#e5e7eb",
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 37.039062 10.990234 A 1.0001 1.0001 0 0 0 36.265625 11.322266 L 26.183594 22.244141 A 3 3 0 0 0 25 22 A 3 3 0 0 0 22 25 A 3 3 0 0 0 25 28 A 3 3 0 0 0 25.5 27.958984 L 29.125 34.486328 A 1.0010694 1.0010694 0 1 0 30.875 33.513672 L 27.246094 26.984375 A 3 3 0 0 0 28 25 A 3 3 0 0 0 27.652344 23.599609 L 37.734375 12.677734 A 1.0001 1.0001 0 0 0 37.039062 10.990234 z" />
-          </svg>
           <div
             className="ml-8"
             onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
