@@ -37,7 +37,7 @@ export default function NoticePage() {
           src={thumbnail}
           alt={`${title} thumbnail`}
         />
-        <div className="p-8 text-slate-300 bg-white/10 relative">
+        <div className="p-8 pb-20 sm:pb-8 text-slate-300 bg-white/10 relative">
           <p className="text-[20px] text-center font-bold mb-8">{title}</p>
           <p className="whitespace-pre-wrap md:whitespace-pre leading-[2]">
             {description}

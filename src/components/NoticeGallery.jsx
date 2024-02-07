@@ -16,16 +16,11 @@ export default function NoticeGallery() {
 
   const settings = {
     infinite: true,
-    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    autoplaySpeed: 4000,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
