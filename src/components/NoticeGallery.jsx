@@ -15,7 +15,14 @@ export default function NoticeGallery() {
   const isLoading = notices.length === 0;
 
   const settings = {
-    infinite: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 4000,
+    cssEase: "linear",
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,

@@ -9,6 +9,7 @@ import Toggle from "./Toggle";
 import { buttonStyle } from "../style/button";
 import symbol from "/symbol.png";
 
+
 export default function Header() {
   const { loginUser } = useContext(DataContext);
 
@@ -17,6 +18,14 @@ export default function Header() {
   const navigate = useNavigate();
 
   const modalRef = useRef();
+
+  //로고 눌렀을 때 메인페이지의 최상단으로 스크롤
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   function openModal() {
     modalRef.current.open();
@@ -40,8 +49,9 @@ export default function Header() {
   return (
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
-        to="/"
-        className="flex items-center font-bold text-[24px] text-slate-300 md:hover:text-slate-500 transition"
+        to="/" 
+        onClick={scrollToTop} //로고 최상단으로 스크롤 함수
+        className="flex items-center font-bold text-[24px] uppercase text-slate-300 hover:text-slate-500 transition"
       >
         <img
           className="w-[50px] mr-2"
