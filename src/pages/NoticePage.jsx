@@ -33,13 +33,15 @@ export default function NoticePage() {
     <div className="py-8">
       <div className="rounded-lg overflow-hidden border-[1px] border-slate-400/30">
         <img
-          className="w-full h-[500px] object-cover"
+          className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
           src={thumbnail}
           alt={`${title} thumbnail`}
         />
         <div className="p-8 text-slate-300 bg-white/10 relative">
           <p className="text-[20px] text-center font-bold mb-8">{title}</p>
-          <p className="whitespace-pre leading-[2]">{description}</p>
+          <p className="whitespace-pre-wrap md:whitespace-pre leading-[2]">
+            {description}
+          </p>
           <div className="text-sm text-slate-500 absolute bottom-4 right-4">
             <p>작성일 : {dateFormatter(createdAt)}</p>
             <p>수정일 : {dateFormatter(updatedAt)}</p>

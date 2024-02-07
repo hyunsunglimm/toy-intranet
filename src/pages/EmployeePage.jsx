@@ -129,11 +129,11 @@ export default function EmployeePage() {
                 <option>반차</option>
               </select>
             )}
-            <div className="flex text-center items-center mt-8">
-              <p className="w-full uppercase">
+            <div className="flex flex-col gap-4 sm:flex-row text-center items-center mt-8">
+              <div className="w-full uppercase">
                 working hours : {employee.workingHours}
-              </p>
-              <div className="w-[1px] h-12 border-[1px] border-slate-400/30"></div>
+              </div>
+              <div className="hidden sm:block w-[1px] h-12 border-[1px] border-slate-400/30"></div>
               <p className="w-full">{employee.email}</p>
             </div>
             <div className="flex justify-end mt-8">
