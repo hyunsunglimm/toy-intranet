@@ -11,6 +11,7 @@ import { introduction } from "../data/Introduction";
 import { deleteButtonStyle } from "../style/button";
 import Modal from "../components/Modal";
 import { FadeLoader } from "react-spinners";
+import SkeletonEmployeePage from "../components/skeleton/SkeletonEmployeePage";
 
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
@@ -25,6 +26,10 @@ export default function EmployeePage() {
   const modalRef = useRef();
 
   const isCurrentEmployee = loginUser?.id === params.id;
+
+  if (!employee) {
+    return <SkeletonEmployeePage />;
+  }
 
   const handleOpenModal = () => {
     modalRef.current.open(); // 모달 열기
