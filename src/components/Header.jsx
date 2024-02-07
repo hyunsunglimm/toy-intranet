@@ -41,27 +41,27 @@ export default function Header() {
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
         to="/"
-        className="flex items-center font-bold text-[24px] uppercase text-slate-300 hover:text-slate-500 transition"
+        className="flex items-center font-bold text-[24px] text-slate-300 hover:text-slate-500 transition"
       >
         <img
           className="w-[50px] mr-2"
           src={symbol}
           alt="intranet five symbol"
         />
-        <p>intranet five</p>
+        <p className="uppercase hidden md:block">intranet five</p>
       </Link>
       {loginUser && (
         <div className="flex justify-end items-center">
           <Timer
             openModal={openModal}
-            className="text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
+            className="absolute top-[26px] left-1/2 -translate-x-1/2 md:static md:translate-x-0 text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
           />
           <div
             className="ml-8"
             onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
           >
             <div className="flex items-center gap-4 text-slate-300 hover:text-slate-500 transition cursor-pointer ml-4">
-              <p className="text-lg">{loginUser?.name}</p>
+              <p className="hidden md:block text-lg">{loginUser?.name}</p>
               <img
                 className="w-[50px] h-[50px] object-cover rounded-full bg-white/30"
                 src={loginUser?.image}

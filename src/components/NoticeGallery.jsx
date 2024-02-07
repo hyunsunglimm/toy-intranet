@@ -6,6 +6,8 @@ import NoticeCard from "./NoticeCard";
 import { DataContext } from "../context/DataContext";
 import SkeletonNoticeCard from "./skeleton/SkeletonNoticeCard";
 import { NOTICE_SKELETON_ARRAY } from "../data/skeleton";
+import NextArrow from "../style/NextArrow";
+import PrevArrow from "../style/PrevArrow";
 
 export default function NoticeGallery() {
   const { notices } = useContext(DataContext);
@@ -13,11 +15,32 @@ export default function NoticeGallery() {
   const isLoading = notices.length === 0;
 
   const settings = {
-    dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   if (isLoading) {
@@ -26,7 +49,7 @@ export default function NoticeGallery() {
         <p className="mb-4 text-center uppercase text-white font-bold text-[20px]">
           notice gallery
         </p>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {NOTICE_SKELETON_ARRAY.map((i) => (
             <SkeletonNoticeCard key={i} />
           ))}

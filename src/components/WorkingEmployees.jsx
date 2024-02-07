@@ -9,7 +9,7 @@ export default function WorkingEmployees() {
 
   const isLoading = employees.length === 0;
 
-  const itemsPerPage = 8; // 한 페이지에 보여질 항목 수
+  const itemsPerPage = window.innerWidth > 1024 ? 8 : 6; // 한 페이지에 보여질 항목 수
   const [currentPage, setCurrentPage] = useState(1);
 
   const workingEmployees = employees.filter(
@@ -30,11 +30,11 @@ export default function WorkingEmployees() {
   );
   if (isLoading) {
     return (
-      <div className="p-4 rounded-md bg-white/10">
+      <div className="p-4 rounded-md bg-white/10 h-[592px] md:h-[826px]">
         <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
           working now !
         </p>
-        <ul className="grid grid-cols-4 gap-4">
+        <ul className="grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
           {EMPLOYEE_SKELETON_ARRAY.map((i) => (
             <SkeletonEmployeeCard key={i} />
           ))}
@@ -44,11 +44,11 @@ export default function WorkingEmployees() {
   }
 
   return (
-    <div className="p-4 rounded-md bg-white/10 h-[826px] relative">
+    <div className="p-4 rounded-md bg-white/10 h-[592px] md:h-[826px] relative">
       <p className="mb-4 text-center uppercase text-slate-300 font-bold text-[20px]">
         working now !
       </p>
-      <ul className="grid grid-cols-4 gap-4">
+      <ul className="grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
         {currentItems.map((employee) => (
           <EmployeeCard key={employee.id} employee={employee} />
         ))}
