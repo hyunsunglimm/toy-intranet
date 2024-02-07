@@ -6,7 +6,9 @@ Toy Project
 https://toy-intranet.vercel.app/
 
 # 프로젝트 제목
-INTRANET FIVE
+![image](https://github.com/hyunsunglimm/toy-intranet/assets/138507900/bd2c4746-12e6-44fa-9f8b-4aad5f1bb242)
+
+
 ![프로젝트 로고](로고_경로)
 
 ## 기술 스택
