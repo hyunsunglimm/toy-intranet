@@ -1,14 +1,22 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getAuth } from "firebase/auth";
-import { deleteEmployee, updateEmployee } from "../sanity/employee";
+import {
+  deleteEmployee,
+  updateEmployee,
+  updateEmployeeImage,
+} from "../sanity/employee";
 import { introduction } from "../data/Introduction";
 import { deleteButtonStyle } from "../style/button";
 import Modal from "../components/Modal";
+import { FadeLoader } from "react-spinners";
 
 export default function EmployeePage() {
   const { employees, loginUser } = useContext(DataContext);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const params = useParams();
   const navigater = useNavigate();
   const employee = employees.find((employee) => employee.id === params.id);
@@ -42,6 +50,14 @@ export default function EmployeePage() {
     updateEmployee(employee.id, "reasonForAbsence", e.target.value);
   }
 
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    if (!e.target.files) return;
+    const selectedFile = e.target.files[0];
+    updateEmployeeImage(loginUser.id, selectedFile, setIsLoading);
+  };
+
   function deleteHandler() {
     deleteUser(user)
       .then(() => {
@@ -60,11 +76,25 @@ export default function EmployeePage() {
         style={{ height: contentHeight }}
       >
         <div className="w-[600px] bg-white/10 rounded-md border-[1px] border-slate-400/30 p-8 relative">
-          <img
-            className="h-[200px] w-[200px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-100px] left-1/2 translate-x-[-50%]"
-            src={employee.image}
-            alt={`${employee.name}님의 프로필`}
-          />
+          {isCurrentEmployee && (
+            <input
+              className="hidden"
+              name="input"
+              id="userImage-update"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+          )}
+          <label htmlFor="userImage-update">
+            <img
+              className={`h-[200px] w-[200px] bg-white ring-2 ring-slate-400/30 rounded-full object-cover absolute top-[-100px] left-1/2 translate-x-[-50%] ${
+                isCurrentEmployee && "cursor-pointer"
+              }`}
+              src={employee.image}
+              alt={`${employee.name}님의 프로필`}
+            />
+          </label>
           <div
             className={`absolute top-8 right-8 ${
               employee.isWorking ? "text-green-500" : "text-red-500"
@@ -86,6 +116,7 @@ export default function EmployeePage() {
                 defaultValue={employee.reasonForAbsence}
                 onChange={handleChange}
                 className="p-2 w-full text-center rounded-md bg-white/10 border-[1px] border-slate-400/30 mt-8 cursor-pointer hover:bg-white/20"
+                disabled={!isCurrentEmployee}
               >
                 <option className="hidden">부재사유가 없습니다.</option>
                 <option>비근무시간</option>
@@ -94,7 +125,9 @@ export default function EmployeePage() {
               </select>
             )}
             <div className="flex text-center items-center mt-8">
-              <p className="w-full">working hours : {employee.workingHours}</p>
+              <p className="w-full uppercase">
+                working hours : {employee.workingHours}
+              </p>
               <div className="w-[1px] h-12 border-[1px] border-slate-400/30"></div>
               <p className="w-full">{employee.email}</p>
             </div>
@@ -133,6 +166,11 @@ export default function EmployeePage() {
           </div>
         </div>
       </Modal>
+      {isLoading && (
+        <div className="fixed inset-0 w-full h-full z-30 bg-stone-900/70 flex justify-center items-center">
+          <FadeLoader color="white" />
+        </div>
+      )}
     </>
   );
 }

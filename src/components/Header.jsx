@@ -104,7 +104,14 @@ export default function Header() {
             alt={`${loginUser?.name}의 프로필사진`}
             className="w-[200px] h-[200px] object-cover rounded-lg"
           />
-          <Timer />
+          <div className="w-full flex justify-between">
+            <p>현재시간</p>
+            <Timer />
+          </div>
+          <div className="w-full flex justify-between">
+            <p>근무시간</p>
+            <p>{loginUser?.workingHours}</p>
+          </div>
           <p>
             {loginUser?.name}님은 현재{" "}
             {loginUser?.isWorking ? "근무중" : "부재중"}
