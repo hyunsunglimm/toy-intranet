@@ -6,7 +6,7 @@
 
 ### 기술 스택
 
-- css3 git html5 javascript nodejs tailwind
+- (https://tailwindcss.com/)
 
 ```markdown
 ## 기술 스택
