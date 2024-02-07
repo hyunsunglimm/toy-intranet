@@ -1,63 +1,29 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import MyPage from "./pages/MyPage";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import { useEffect, useState } from "react";
-import client from "./sanity/client";
-import { EmployeeContext } from "./context/EmployeeContext";
-import Management from "./pages/Management";
+import DataContextProvider from "./context/DataContext";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NoticePage from "./pages/NoticePage";
+import EmployeePage from "./pages/EmployeePage";
+import Footer from "./components/Footer";
 
 function App() {
-  const [employees, setEmployees] = useState([]);
-  const [loginUser, setLoginUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
-      if (user) {
-        const loginUser = employees.find(
-          (employee) => employee.email === user.email
-        );
-        setLoginUser(loginUser);
-      } else {
-        setLoginUser(null);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [employees]);
-
-  useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "employee"]{
-        ...,
-        "id": _id,
-        "image": image.asset->url
-      }`
-      )
-      .then((data) => setEmployees(data))
-      .catch(console.error);
-  }, []);
-
   return (
-    <EmployeeContext.Provider value={{ employees, loginUser }}>
+    <DataContextProvider>
       <Header />
-      <div className="flex">
-        <Sidebar />
+      <div className="w-11/12 max-w-[1200px] mx-auto">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/management" element={<Management />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/notice/:id" element={<NoticePage />} />
+          <Route path="/employee/:id" element={<EmployeePage />} />
         </Routes>
       </div>
-    </EmployeeContext.Provider>
+      <Footer />
+    </DataContextProvider>
   );
 }
 

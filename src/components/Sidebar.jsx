@@ -26,7 +26,7 @@ export default function Sidebar() {
           <p>페이지</p>
           <ul className="p-4">
             <li>
-              <Link to="/management">직원 관리</Link>
+              <Link to="/management">직원 관</Link>
             </li>
             <li>
               <Link to="/mypage">page2</Link>
