@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LuClock3 } from "react-icons/lu";
 
 export default function Timer({ openModal, ...props }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -15,17 +16,21 @@ export default function Timer({ openModal, ...props }) {
   
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const dayOfWeek = daysOfWeek[currentDateTime.getDay()]; // 현재 날짜의 요일을 가져옴
-  const year = currentDateTime.getFullYear();
+  // const year = currentDateTime.getFullYear();
   const hours = currentDateTime.getHours();
   const minutes = currentDateTime.getMinutes();
   // const seconds = currentDateTime.getSeconds();
-  const ampm = hours >= 12 ? "오후" : "오전";
+  // const ampm = hours >= 12 ? "오후" : "오전";
   const formattedHours = String(hours % 12 || 12).padStart(2, '0');
   const formattedMinutes = String(minutes).padStart(2, '0');    //padStart를 이용해서 두자리로 만들고 나머지 빈칸에 0을 집어넣게 해줌
   const formattedDateTime = `${formattedHours}:${formattedMinutes}`;
 
   return (
-    <p onClick={openModal} {...props}>
+    <p
+      onClick={openModal} {...props}
+      style={{display: 'flex', alignItems: 'center', gap: '.5rem'}}
+    >
+      <LuClock3/>
       {formattedDateTime} {dayOfWeek}
     </p>
   );
