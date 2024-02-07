@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import EmployeeCard from "./EmployeeCard";
 import SkeletonEmployeeCard from "./skeleton/SkeletonEmployeeCard";
@@ -9,8 +9,22 @@ export default function WorkingEmployees() {
 
   const isLoading = employees.length === 0;
 
-  const itemsPerPage = window.innerWidth > 1024 ? 8 : 6; // 한 페이지에 보여질 항목 수
   const [currentPage, setCurrentPage] = useState(1);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const itemsPerPage = windowWidth > 1024 ? 8 : 6; // 한 페이지에 보여질 항목 수
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const workingEmployees = employees.filter(
     (employee) => employee.isWorking === true
@@ -28,6 +42,7 @@ export default function WorkingEmployees() {
     indexOfFirstItem,
     indexOfLastItem
   );
+
   if (isLoading) {
     return (
       <div className="p-4 rounded-md bg-white/10 h-[592px] md:h-[826px]">
