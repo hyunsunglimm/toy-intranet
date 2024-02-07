@@ -6,7 +6,7 @@
 
 ### 기술 스택
 
-- 프로젝트에 사용된 기술, 프레임워크, 라이브러리를 나열합니다.
+- css3 git html5 javascript nodejs tailwind
 
 ```markdown
 ## 기술 스택
