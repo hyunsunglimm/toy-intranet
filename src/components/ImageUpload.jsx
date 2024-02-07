@@ -11,7 +11,7 @@ export default function ImageUpload({ message, handleChange, file }) {
       />
       <label
         htmlFor="userImage-upload"
-        className="block w-[100px] h-[100px] border-[1px] bg-white/0 border-slate-400/30 hover:border-slate-400/50 rounded-full cursor-pointer mx-auto hover:bg-white/10 transition"
+        className="block w-[100px] h-[100px] border-[1px] bg-white/0 border-slate-400/30 md:hover:border-slate-400/50 rounded-full cursor-pointer mx-auto md:hover:bg-white/10 transition"
       >
         {file && (
           <img

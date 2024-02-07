@@ -41,7 +41,7 @@ export default function Header() {
     <section className="sticky top-0 h-[80px] z-20 flex justify-between items-center px-12 backdrop-blur-sm text-white border-b-[1px] border-slate-400/30">
       <Link
         to="/"
-        className="flex items-center font-bold text-[24px] text-slate-300 hover:text-slate-500 transition"
+        className="flex items-center font-bold text-[24px] text-slate-300 md:hover:text-slate-500 transition"
       >
         <img
           className="w-[50px] mr-2"
@@ -54,13 +54,13 @@ export default function Header() {
         <div className="flex justify-end items-center">
           <Timer
             openModal={openModal}
-            className="absolute top-[26px] left-1/2 -translate-x-1/2 md:static md:translate-x-0 text-slate-300 hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
+            className="absolute top-[26px] left-1/2 -translate-x-1/2 md:static md:translate-x-0 text-slate-300 md:hover:text-slate-500 transition cursor-pointer text-lg flex items-center gap-2.5"
           />
           <div
             className="ml-8"
             onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
           >
-            <div className="flex items-center gap-4 text-slate-300 hover:text-slate-500 transition cursor-pointer ml-4">
+            <div className="flex items-center gap-4 text-slate-300 md:hover:text-slate-500 transition cursor-pointer ml-4">
               <p className="hidden md:block text-lg">{loginUser?.name}</p>
               <img
                 className="w-[50px] h-[50px] object-cover rounded-full bg-white/30"
@@ -69,18 +69,18 @@ export default function Header() {
               />
             </div>
             <div
-              className={`fixed flex-col top-[100px] text-slate-300 rounded-md right-[20px] bg-white/5 border-[1px] border-slate-400/30 ${
+              className={`fixed flex-col top-[100px] text-slate-300 rounded-md right-[20px] bg-white/30 md:bg-white/5 border-[1px] border-slate-400/30 ${
                 dropdownIsOpen ? "flex" : "hidden"
               }`}
             >
               <Link
                 to={`/employee/${loginUser.id}`}
-                className="py-4 px-12 border-b-[1px] border-slate-400/30 hover:bg-white/10 transition rounded-t-md"
+                className="py-4 px-12 border-b-[1px] border-slate-400/30 md:hover:bg-white/10 transition rounded-t-md"
               >
                 마이페이지
               </Link>
               <button
-                className="py-4 px-12 hover:bg-white/10 transition rounded-b-md"
+                className="py-4 px-12 md:hover:bg-white/10 transition rounded-b-md"
                 onClick={signOutHandler}
               >
                 로그아웃
