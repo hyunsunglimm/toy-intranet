@@ -1,12 +1,8 @@
-import React from "react";
-
 export default function SkeletonEmployeePage() {
-  const contentHeight = `${window.innerHeight - 80}px`;
-
   return (
     <div
       className="flex items-center justify-center text-slate-300"
-      style={{ height: contentHeight }}
+      style={{ height: "calc(100vh - 80px)" }}
     >
       {" "}
       {/* contentHeight 대신 '100vh'를 사용하여 전체 뷰포트 높이를 채움 */}

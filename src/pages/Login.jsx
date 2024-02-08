@@ -45,11 +45,9 @@ export default function Login() {
       });
   }
 
-  const contentHeight = `${window.innerHeight - 80}px`;
-
   return (
     <div
-      style={{ height: contentHeight }}
+      style={{ height: "calc(100vh - 80px)" }}
       className="flex justify-center items-center"
     >
       <form
