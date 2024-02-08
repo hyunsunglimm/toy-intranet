@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NoticePage from "./pages/NoticePage";
 import EmployeePage from "./pages/EmployeePage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/notice/:id" element={<NoticePage />} />
           <Route path="/employee/:id" element={<EmployeePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </DataContextProvider>

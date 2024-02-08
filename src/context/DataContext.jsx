@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { useEffect, useState } from "react";
 import client, { urlFor } from "../sanity/client";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export const DataContext = createContext(null);
 
@@ -9,6 +10,8 @@ export default function DataContextProvider({ children }) {
   const [employees, setEmployees] = useState([]);
   const [notices, setNotices] = useState([]);
   const [loginUser, setLoginUser] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
@@ -18,12 +21,13 @@ export default function DataContextProvider({ children }) {
         );
         setLoginUser(loginUser);
       } else {
+        navigate("/login");
         setLoginUser(null);
       }
     });
 
     return () => unsubscribe();
-  }, [employees]);
+  }, [employees, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
