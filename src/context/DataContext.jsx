@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useEffect, useState } from "react";
 import client, { urlFor } from "../sanity/client";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const DataContext = createContext(null);
 
@@ -10,6 +10,7 @@ export default function DataContextProvider({ children }) {
   const [employees, setEmployees] = useState([]);
   const [notices, setNotices] = useState([]);
   const [loginUser, setLoginUser] = useState(null);
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
@@ -21,13 +22,15 @@ export default function DataContextProvider({ children }) {
         );
         setLoginUser(loginUser);
       } else {
-        navigate("/login");
+        if (pathname !== "/signup") {
+          navigate("/login");
+        }
         setLoginUser(null);
       }
     });
 
     return () => unsubscribe();
-  }, [employees, navigate]);
+  }, [employees, navigate, pathname]);
 
   useEffect(() => {
     const fetchData = async () => {
