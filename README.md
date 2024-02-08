@@ -169,15 +169,17 @@ YES를 눌러 직원탈퇴를 하게 되면 로그인한 사용자의 정보가 
     - 전체적인 스타일링
     - 반응형 레이아웃
 - 이재혁
-  - Sidebar.jsx
+   - WorkingEmployees.jsx / AbsenceEmployees.jsx
     - 페이지네이션
-        - HomePage의 근무/부재 직원 8명씩 보이도록 페이지네이션
+        - HomePage의 근무/부재 직원 페이지당 8명씩 보이도록 페이지네이션
+  - NoticeGallery.jsx
     - 슬라이더
         - HomePage의 기업 공지 갤러리 4개씩 보이도록 슬라이더 만들기
-    - Footer
+    - Footer.jsx
         - 인트라넷 소개
         - 기능소개
         - 팀원소개
+        - 로고
 - 이동근
   - Header.jsx
     - 현재 시간 보여주기
