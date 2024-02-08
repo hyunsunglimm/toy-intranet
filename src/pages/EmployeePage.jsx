@@ -35,8 +35,6 @@ export default function EmployeePage() {
     modalRef.current.open(); // 모달 열기
   };
 
-  const contentHeight = `${window.innerHeight - 80}px`;
-
   if (!employee) {
     return <p>loading...</p>;
   }
@@ -78,7 +76,7 @@ export default function EmployeePage() {
     <>
       <div
         className="flex items-center justify-center text-slate-300"
-        style={{ height: contentHeight }}
+        style={{ height: "calc(100vh - 80px)" }}
       >
         <div className="w-[600px] bg-white/10 rounded-md border-[1px] border-slate-400/30 p-8 relative">
           {isCurrentEmployee && (

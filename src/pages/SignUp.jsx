@@ -112,11 +112,9 @@ export default function SignUp() {
     });
   };
 
-  const contentHeight = `${window.innerHeight - 80}px`;
-
   return (
     <div
-      style={{ height: innerWidth > 768 && contentHeight }}
+      style={{ height: innerWidth > 768 && "calc(100vh - 80px)" }}
       className="flex justify-center items-center py-8 md:py-0"
     >
       <div className="bg-white/10 rounded-lg w-full sm:w-[600px] p-8 h-min">
