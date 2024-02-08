@@ -169,7 +169,7 @@ YES를 눌러 직원탈퇴를 하게 되면 로그인한 사용자의 정보가 
     - 전체적인 스타일링
     - 반응형 레이아웃
 - 이재혁
-   - WorkingEmployees.jsx / AbsenceEmployees.jsx
+  - WorkingEmployees.jsx / AbsenceEmployees.jsx
     - 페이지네이션
         - HomePage의 근무/부재 직원 페이지당 8명씩 보이도록 페이지네이션
   - NoticeGallery.jsx
