@@ -53,6 +53,10 @@ export async function updateEmployee(id, key, value) {
 }
 
 export async function updateEmployeeImage(id, file, setIsLoading) {
+  if (!file) {
+    return;
+  }
+
   setIsLoading(true);
 
   return fetch(assetsUrl, {
