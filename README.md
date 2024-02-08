@@ -2,7 +2,7 @@
 
 # 배포사이트
 
-[INTRANET FIVE](https://toy-intranet.vercel.app/login)
+[INTRANET FIVE](https://toy-intranet.vercel.app)
 <br><br>
 
 ### 처음 방문하시는 모든 분들은 직원등록(회원가입)을 통해 아래 나열된 기능을 체험해보세요 !
@@ -132,7 +132,7 @@ YES를 눌러 직원탈퇴를 하게 되면 로그인한 사용자의 정보가 
 
 ### 10. 이미지 업로드
 
-<p align="center"><img src='https://github.com/hyunsunglimm/toy-intranet/assets/102540636/04254cda-9bb2-49cf-95ca-f74ace379ea7' width="100%" /></p>
+<p align="center"><img src='https://github.com/hyunsunglimm/toy-intranet/assets/102540636/832f7922-56f8-457b-aaaf-d31aa331c081' width="100%" /></p>
 
 직원 상세페이지에서 이미지 업로드가 가능합니다.<br>
 변경한 사진으로 데이터가 변경됩니다.
@@ -176,12 +176,16 @@ YES를 눌러 직원탈퇴를 하게 되면 로그인한 사용자의 정보가 
     - 반응형 레이아웃
     - 토글스위치로 직원 근무 / 부재중 변경 구현
     - 직원탈퇴버튼에 직원삭제기능 구현
-    <br>
+    - 로그인 유무 확인하여 로그인 페이지로 리다이렉트
+    - 잘못된 url로 접근 시 404 Not Found 페이지 보여주기
+      <br>
 - 이재혁
+
   - WorkingEmployees.jsx / AbsenceEmployees.jsx
     - 페이지네이션
       - HomePage의 근무/부재 직원 페이지당 8명씩 보이도록 페이지네이션
   - NoticeGallery.jsx
+
     - 슬라이더
       - HomePage의 기업 공지 갤러리 4개씩 보이도록 슬라이더 만들기
     - Footer.jsx
@@ -192,6 +196,7 @@ YES를 눌러 직원탈퇴를 하게 되면 로그인한 사용자의 정보가 
       - 로고
 
         <br>
+
 - 이동근
   - Header.jsx
     - 현재 시간 보여주기
